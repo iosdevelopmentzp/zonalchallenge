@@ -17,7 +17,7 @@ class PlanetSnapshotProvider {
     }
     
     /// Called when a change to the Planets occurs
-    var onSnapshotUpdate: ((NSDiffableDataSourceSnapshot<PlanetSections, Planet>) -> Void)?
+    var onSnapshotUpdate: ((NSDiffableDataSourceSnapshot<PlanetSections, PlanetDTO>) -> Void)?
     
     private let apiClient = ZNLSWAPIClient(baseURL: URL(string: "https://swapi.dev/api/")!, using: URLSession.init(configuration: .ephemeral))
     
@@ -32,9 +32,9 @@ class PlanetSnapshotProvider {
             }
             
             do {
-                let planets = try JSONDecoder().decode(Planets.self, from: responseData)
+                let planets = try JSONDecoder().decode(PlanetsPageDTO.self, from: responseData)
                 
-                var snapshot = NSDiffableDataSourceSnapshot<PlanetSections, Planet>()
+                var snapshot = NSDiffableDataSourceSnapshot<PlanetSections, PlanetDTO>()
                 snapshot.appendSections([.main])
                 snapshot.appendItems(planets.planets)
                 

@@ -12,6 +12,7 @@
 		3BCB22E42A4DD24D00ACD9AF /* SwapiClientService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BCB22E32A4DD24D00ACD9AF /* SwapiClientService.swift */; };
 		3BCB22E62A4DD28A00ACD9AF /* Endpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BCB22E52A4DD28A00ACD9AF /* Endpoint.swift */; };
 		3BCB22E82A4DD2BF00ACD9AF /* NetworkClientError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BCB22E72A4DD2BF00ACD9AF /* NetworkClientError.swift */; };
+		3BCB22EE2A4DD5DB00ACD9AF /* StarWarsNetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BCB22ED2A4DD5DB00ACD9AF /* StarWarsNetworkService.swift */; };
 		7E29D86926A6FFF9001034D1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E29D86826A6FFF9001034D1 /* AppDelegate.swift */; };
 		7E29D86B26A6FFF9001034D1 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E29D86A26A6FFF9001034D1 /* SceneDelegate.swift */; };
 		7E29D87026A6FFF9001034D1 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7E29D86E26A6FFF9001034D1 /* Main.storyboard */; };
@@ -19,9 +20,9 @@
 		7E29D87526A6FFFC001034D1 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7E29D87326A6FFFC001034D1 /* LaunchScreen.storyboard */; };
 		7E29D89B26A70C1A001034D1 /* ZNLSWAPIClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E29D89A26A70C1A001034D1 /* ZNLSWAPIClient.m */; };
 		7E29D89F26A71C61001034D1 /* PlanetsCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E29D89E26A71C61001034D1 /* PlanetsCollectionViewController.swift */; };
-		7E29D8A226A71D78001034D1 /* Planet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E29D8A126A71D78001034D1 /* Planet.swift */; };
+		7E29D8A226A71D78001034D1 /* PlanetDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E29D8A126A71D78001034D1 /* PlanetDTO.swift */; };
 		7E29D8A426A72A2A001034D1 /* PlanetsSnapshotProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E29D8A326A72A2A001034D1 /* PlanetsSnapshotProvider.swift */; };
-		7E29D8A626A73243001034D1 /* Planets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E29D8A526A73243001034D1 /* Planets.swift */; };
+		7E29D8A626A73243001034D1 /* PlanetsPageDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E29D8A526A73243001034D1 /* PlanetsPageDTO.swift */; };
 		7E29D8AC26A85C6E001034D1 /* ZNLSWAPIClientTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E29D8AB26A85C6E001034D1 /* ZNLSWAPIClientTests.swift */; };
 		7E29D8B126A87ADF001034D1 /* SpaceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E29D8B026A87ADF001034D1 /* SpaceView.swift */; };
 		7E29D92926A969D2001034D1 /* SpaceshipView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E29D92826A969D2001034D1 /* SpaceshipView.swift */; };
@@ -43,6 +44,7 @@
 		3BCB22E32A4DD24D00ACD9AF /* SwapiClientService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwapiClientService.swift; sourceTree = "<group>"; };
 		3BCB22E52A4DD28A00ACD9AF /* Endpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Endpoint.swift; sourceTree = "<group>"; };
 		3BCB22E72A4DD2BF00ACD9AF /* NetworkClientError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkClientError.swift; sourceTree = "<group>"; };
+		3BCB22ED2A4DD5DB00ACD9AF /* StarWarsNetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StarWarsNetworkService.swift; sourceTree = "<group>"; };
 		7E29D86526A6FFF9001034D1 /* StarWarsAPIViewer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = StarWarsAPIViewer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7E29D86826A6FFF9001034D1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		7E29D86A26A6FFF9001034D1 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -56,9 +58,9 @@
 		7E29D89926A70C1A001034D1 /* ZNLSWAPIClient.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZNLSWAPIClient.h; sourceTree = "<group>"; };
 		7E29D89A26A70C1A001034D1 /* ZNLSWAPIClient.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZNLSWAPIClient.m; sourceTree = "<group>"; };
 		7E29D89E26A71C61001034D1 /* PlanetsCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlanetsCollectionViewController.swift; sourceTree = "<group>"; };
-		7E29D8A126A71D78001034D1 /* Planet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Planet.swift; sourceTree = "<group>"; };
+		7E29D8A126A71D78001034D1 /* PlanetDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlanetDTO.swift; sourceTree = "<group>"; };
 		7E29D8A326A72A2A001034D1 /* PlanetsSnapshotProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlanetsSnapshotProvider.swift; sourceTree = "<group>"; };
-		7E29D8A526A73243001034D1 /* Planets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Planets.swift; sourceTree = "<group>"; };
+		7E29D8A526A73243001034D1 /* PlanetsPageDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlanetsPageDTO.swift; sourceTree = "<group>"; };
 		7E29D8AB26A85C6E001034D1 /* ZNLSWAPIClientTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZNLSWAPIClientTests.swift; sourceTree = "<group>"; };
 		7E29D8B026A87ADF001034D1 /* SpaceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpaceView.swift; sourceTree = "<group>"; };
 		7E29D92826A969D2001034D1 /* SpaceshipView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpaceshipView.swift; sourceTree = "<group>"; };
@@ -85,6 +87,7 @@
 		3BCB22DB2A4DC12200ACD9AF /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				3BCB22EC2A4DD51100ACD9AF /* NetworksServices */,
 				3BCB22E22A4DD21B00ACD9AF /* ClientServices */,
 				3BCB22DC2A4DC13600ACD9AF /* NetworkingService */,
 			);
@@ -124,6 +127,14 @@
 				3BCB22E72A4DD2BF00ACD9AF /* NetworkClientError.swift */,
 			);
 			path = Base;
+			sourceTree = "<group>";
+		};
+		3BCB22EC2A4DD51100ACD9AF /* NetworksServices */ = {
+			isa = PBXGroup;
+			children = (
+				3BCB22ED2A4DD5DB00ACD9AF /* StarWarsNetworkService.swift */,
+			);
+			path = NetworksServices;
 			sourceTree = "<group>";
 		};
 		7E29D85C26A6FFF9001034D1 = {
@@ -185,8 +196,8 @@
 		7E29D8A826A81DC2001034D1 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				7E29D8A126A71D78001034D1 /* Planet.swift */,
-				7E29D8A526A73243001034D1 /* Planets.swift */,
+				7E29D8A126A71D78001034D1 /* PlanetDTO.swift */,
+				7E29D8A526A73243001034D1 /* PlanetsPageDTO.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -320,15 +331,16 @@
 				7E29D86926A6FFF9001034D1 /* AppDelegate.swift in Sources */,
 				7E29D89F26A71C61001034D1 /* PlanetsCollectionViewController.swift in Sources */,
 				7E29D8A426A72A2A001034D1 /* PlanetsSnapshotProvider.swift in Sources */,
-				7E29D8A226A71D78001034D1 /* Planet.swift in Sources */,
+				7E29D8A226A71D78001034D1 /* PlanetDTO.swift in Sources */,
 				7E29D8B126A87ADF001034D1 /* SpaceView.swift in Sources */,
 				3BCB22DE2A4DC15800ACD9AF /* NetworkingService.swift in Sources */,
 				3BCB22E12A4DCBED00ACD9AF /* LoggingPlugin.swift in Sources */,
+				3BCB22EE2A4DD5DB00ACD9AF /* StarWarsNetworkService.swift in Sources */,
 				7E29D92926A969D2001034D1 /* SpaceshipView.swift in Sources */,
 				3BCB22E82A4DD2BF00ACD9AF /* NetworkClientError.swift in Sources */,
 				7E29D89B26A70C1A001034D1 /* ZNLSWAPIClient.m in Sources */,
 				7E29D86B26A6FFF9001034D1 /* SceneDelegate.swift in Sources */,
-				7E29D8A626A73243001034D1 /* Planets.swift in Sources */,
+				7E29D8A626A73243001034D1 /* PlanetsPageDTO.swift in Sources */,
 				3BCB22E62A4DD28A00ACD9AF /* Endpoint.swift in Sources */,
 				3BCB22E42A4DD24D00ACD9AF /* SwapiClientService.swift in Sources */,
 			);

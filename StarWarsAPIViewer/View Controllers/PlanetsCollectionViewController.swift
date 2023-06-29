@@ -9,14 +9,14 @@ import UIKit
 
 class PlanetsCollectionViewController: UICollectionViewController {
     
-    private let planetCellRegistration = UICollectionView.CellRegistration<UICollectionViewListCell, Planet> { cell, indexPath, planet in
+    private let planetCellRegistration = UICollectionView.CellRegistration<UICollectionViewListCell, PlanetDTO> { cell, indexPath, planet in
         var configuration = cell.defaultContentConfiguration()
         configuration.text = planet.name
         configuration.secondaryText = "Population: \(planet.population)"
         cell.contentConfiguration = configuration
     }
     
-    private lazy var dataSource: UICollectionViewDiffableDataSource<PlanetSnapshotProvider.PlanetSections, Planet> = UICollectionViewDiffableDataSource(collectionView: collectionView) { collectionView, indexPath, planet in
+    private lazy var dataSource: UICollectionViewDiffableDataSource<PlanetSnapshotProvider.PlanetSections, PlanetDTO> = UICollectionViewDiffableDataSource(collectionView: collectionView) { collectionView, indexPath, planet in
         return collectionView.dequeueConfiguredReusableCell(using: self.planetCellRegistration, for: indexPath, item: planet)
     }
     
