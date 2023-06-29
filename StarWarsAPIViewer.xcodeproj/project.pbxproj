@@ -28,7 +28,6 @@
 		3BCB23102A4DFFFB00ACD9AF /* StarWarsSpaceViewSceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BCB230F2A4DFFFB00ACD9AF /* StarWarsSpaceViewSceneDelegate.swift */; };
 		3BCB23122A4E02C300ACD9AF /* StarWarsSpaceView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3BCB23112A4E02C300ACD9AF /* StarWarsSpaceView.xib */; };
 		7E29D86926A6FFF9001034D1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E29D86826A6FFF9001034D1 /* AppDelegate.swift */; };
-		7E29D86B26A6FFF9001034D1 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E29D86A26A6FFF9001034D1 /* SceneDelegate.swift */; };
 		7E29D87026A6FFF9001034D1 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7E29D86E26A6FFF9001034D1 /* Main.storyboard */; };
 		7E29D87226A6FFFC001034D1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7E29D87126A6FFFC001034D1 /* Assets.xcassets */; };
 		7E29D87526A6FFFC001034D1 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7E29D87326A6FFFC001034D1 /* LaunchScreen.storyboard */; };
@@ -74,7 +73,6 @@
 		3BCB23112A4E02C300ACD9AF /* StarWarsSpaceView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = StarWarsSpaceView.xib; sourceTree = "<group>"; };
 		7E29D86526A6FFF9001034D1 /* StarWarsAPIViewer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = StarWarsAPIViewer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7E29D86826A6FFF9001034D1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		7E29D86A26A6FFF9001034D1 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		7E29D86F26A6FFF9001034D1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		7E29D87126A6FFFC001034D1 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		7E29D87426A6FFFC001034D1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -266,7 +264,6 @@
 				7E29D8A926A81DD3001034D1 /* View Controllers */,
 				7E29D8A826A81DC2001034D1 /* Model */,
 				7E29D86826A6FFF9001034D1 /* AppDelegate.swift */,
-				7E29D86A26A6FFF9001034D1 /* SceneDelegate.swift */,
 				7E29D86E26A6FFF9001034D1 /* Main.storyboard */,
 				7E29D87126A6FFFC001034D1 /* Assets.xcassets */,
 				7E29D87326A6FFFC001034D1 /* LaunchScreen.storyboard */,
@@ -442,7 +439,6 @@
 				3BCB22EE2A4DD5DB00ACD9AF /* StarWarsNetworkService.swift in Sources */,
 				7E29D92926A969D2001034D1 /* SpaceshipView.swift in Sources */,
 				3BCB22E82A4DD2BF00ACD9AF /* NetworkClientError.swift in Sources */,
-				7E29D86B26A6FFF9001034D1 /* SceneDelegate.swift in Sources */,
 				3BCB22F22A4DF47600ACD9AF /* MainCoordinatorView.swift in Sources */,
 				7E29D8A626A73243001034D1 /* PlanetsPageDTO.swift in Sources */,
 				3BCB22E62A4DD28A00ACD9AF /* Endpoint.swift in Sources */,
