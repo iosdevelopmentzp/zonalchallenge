@@ -9,7 +9,7 @@ import UIKit
 
 class PlanetsCollectionViewController: UICollectionViewController {
     
-    private lazy var planetCellRegistration = UICollectionView.CellRegistration<UICollectionViewListCell, Planet> { cell, indexPath, planet in
+    private let planetCellRegistration = UICollectionView.CellRegistration<UICollectionViewListCell, Planet> { cell, indexPath, planet in
         var configuration = cell.defaultContentConfiguration()
         configuration.text = planet.name
         configuration.secondaryText = "Population: \(planet.population)"
