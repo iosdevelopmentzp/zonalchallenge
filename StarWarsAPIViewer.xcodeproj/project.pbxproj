@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3BCB22DE2A4DC15800ACD9AF /* NetworkingService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BCB22DD2A4DC15800ACD9AF /* NetworkingService.swift */; };
 		7E29D86926A6FFF9001034D1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E29D86826A6FFF9001034D1 /* AppDelegate.swift */; };
 		7E29D86B26A6FFF9001034D1 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E29D86A26A6FFF9001034D1 /* SceneDelegate.swift */; };
 		7E29D87026A6FFF9001034D1 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7E29D86E26A6FFF9001034D1 /* Main.storyboard */; };
@@ -33,6 +34,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		3BCB22DD2A4DC15800ACD9AF /* NetworkingService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkingService.swift; sourceTree = "<group>"; };
 		7E29D86526A6FFF9001034D1 /* StarWarsAPIViewer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = StarWarsAPIViewer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7E29D86826A6FFF9001034D1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		7E29D86A26A6FFF9001034D1 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -72,6 +74,22 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		3BCB22DB2A4DC12200ACD9AF /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				3BCB22DC2A4DC13600ACD9AF /* NetworkingService */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		3BCB22DC2A4DC13600ACD9AF /* NetworkingService */ = {
+			isa = PBXGroup;
+			children = (
+				3BCB22DD2A4DC15800ACD9AF /* NetworkingService.swift */,
+			);
+			path = NetworkingService;
+			sourceTree = "<group>";
+		};
 		7E29D85C26A6FFF9001034D1 = {
 			isa = PBXGroup;
 			children = (
@@ -93,6 +111,7 @@
 		7E29D86726A6FFF9001034D1 /* StarWarsAPIViewer */ = {
 			isa = PBXGroup;
 			children = (
+				3BCB22DB2A4DC12200ACD9AF /* Services */,
 				7E29D92A26A96D79001034D1 /* Views */,
 				7E29D8AA26A81DE1001034D1 /* Data Source */,
 				7E29D8A926A81DD3001034D1 /* View Controllers */,
@@ -267,6 +286,7 @@
 				7E29D8A426A72A2A001034D1 /* PlanetsSnapshotProvider.swift in Sources */,
 				7E29D8A226A71D78001034D1 /* Planet.swift in Sources */,
 				7E29D8B126A87ADF001034D1 /* SpaceView.swift in Sources */,
+				3BCB22DE2A4DC15800ACD9AF /* NetworkingService.swift in Sources */,
 				7E29D92926A969D2001034D1 /* SpaceshipView.swift in Sources */,
 				7E29D89B26A70C1A001034D1 /* ZNLSWAPIClient.m in Sources */,
 				7E29D86B26A6FFF9001034D1 /* SceneDelegate.swift in Sources */,
