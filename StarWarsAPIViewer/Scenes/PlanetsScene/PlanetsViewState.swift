@@ -13,7 +13,7 @@ enum PlanetsViewState: Hashable {
         let name: String
         let population: String
     }
-    // Represents the idle state, indicating no data is currently available.
+    /// Represents the idle state, indicating no data is currently available.
     case idle
     /// Represents the empty list state, indicating that the list of planets is empty.
     case emptyList
@@ -31,30 +31,28 @@ extension PlanetsViewState {
     /// A factory class for creating instances of `PlanetsViewState`.
     struct Factory {
         enum InputDataConditions {
-            case loading(previousState: PlanetsViewState)
-            case failedLoading(previousState: PlanetsViewState, error: Error)
-            case loaded(previousState: PlanetsViewState, newPlanets: [Planet])
+            case loading(planets: [PlanetItem]?)
+            case failedLoading(planets: [PlanetItem]?, error: Error)
+            case loaded(planets: [Planet])
         }
         
         static func make(_ dataConditions: InputDataConditions) -> PlanetsViewState {
             switch dataConditions {
-            case .loading(let previousState):
-                return .loading(planets: previousState.planets)
+            case .loading(let planets):
+                return .loading(planets: planets)
                 
-            case .failedLoading(let previousState, let error):
+            case .failedLoading(let planets, let error):
                 return .failedLoading(
                     errorMessage: error.localizedDescription,
-                    planets: previousState.planets
+                    planets: planets
                 )
                 
-            case .loaded(let previousState, let newPlanets):
-                let mappedPlanets = newPlanets.map(PlanetItem.make(from:))
-                let allPlanets = (previousState.planets ?? []) + mappedPlanets
-                guard !allPlanets.isEmpty else {
+            case .loaded(let planets):
+                guard !planets.isEmpty else {
                     return .emptyList
                 }
                 
-                return .loaded(planets: allPlanets)
+                return .loaded(planets: planets.map(PlanetItem.make(from:)))
             }
         }
     }

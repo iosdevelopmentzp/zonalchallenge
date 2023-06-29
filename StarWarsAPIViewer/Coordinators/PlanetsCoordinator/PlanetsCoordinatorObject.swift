@@ -25,7 +25,19 @@ final class PlanetsCoordinatorObject: ObservableObject {
 
 extension PlanetsCoordinatorObject: StarWarsSpaceViewSceneDelegate {
     func didTapBrowsePlanets() {
-        planetsViewModel = PlanetsViewModel(sceneDelegate: self)
+        planetsViewModel = PlanetsViewModel(
+            useCase: StarWarsUseCase(
+                starWarsNetwork: StarWarsNetworkService(
+                    client: SwapiClientService(
+                        networking: NetworkingService(
+                            plugins: [LoggingPlugin()]
+                        ),
+                        baseURL: "https://swapi.dev/"
+                    )
+                )
+            ),
+            sceneDelegate: self
+        )
     }
 }
 
