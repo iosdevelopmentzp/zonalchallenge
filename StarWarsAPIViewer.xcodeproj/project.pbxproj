@@ -9,6 +9,9 @@
 /* Begin PBXBuildFile section */
 		3BCB22DE2A4DC15800ACD9AF /* NetworkingService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BCB22DD2A4DC15800ACD9AF /* NetworkingService.swift */; };
 		3BCB22E12A4DCBED00ACD9AF /* LoggingPlugin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BCB22E02A4DCBED00ACD9AF /* LoggingPlugin.swift */; };
+		3BCB22E42A4DD24D00ACD9AF /* SwapiClientService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BCB22E32A4DD24D00ACD9AF /* SwapiClientService.swift */; };
+		3BCB22E62A4DD28A00ACD9AF /* Endpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BCB22E52A4DD28A00ACD9AF /* Endpoint.swift */; };
+		3BCB22E82A4DD2BF00ACD9AF /* NetworkClientError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BCB22E72A4DD2BF00ACD9AF /* NetworkClientError.swift */; };
 		7E29D86926A6FFF9001034D1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E29D86826A6FFF9001034D1 /* AppDelegate.swift */; };
 		7E29D86B26A6FFF9001034D1 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E29D86A26A6FFF9001034D1 /* SceneDelegate.swift */; };
 		7E29D87026A6FFF9001034D1 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7E29D86E26A6FFF9001034D1 /* Main.storyboard */; };
@@ -37,6 +40,9 @@
 /* Begin PBXFileReference section */
 		3BCB22DD2A4DC15800ACD9AF /* NetworkingService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkingService.swift; sourceTree = "<group>"; };
 		3BCB22E02A4DCBED00ACD9AF /* LoggingPlugin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoggingPlugin.swift; sourceTree = "<group>"; };
+		3BCB22E32A4DD24D00ACD9AF /* SwapiClientService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwapiClientService.swift; sourceTree = "<group>"; };
+		3BCB22E52A4DD28A00ACD9AF /* Endpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Endpoint.swift; sourceTree = "<group>"; };
+		3BCB22E72A4DD2BF00ACD9AF /* NetworkClientError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkClientError.swift; sourceTree = "<group>"; };
 		7E29D86526A6FFF9001034D1 /* StarWarsAPIViewer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = StarWarsAPIViewer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7E29D86826A6FFF9001034D1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		7E29D86A26A6FFF9001034D1 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -79,6 +85,7 @@
 		3BCB22DB2A4DC12200ACD9AF /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				3BCB22E22A4DD21B00ACD9AF /* ClientServices */,
 				3BCB22DC2A4DC13600ACD9AF /* NetworkingService */,
 			);
 			path = Services;
@@ -99,6 +106,24 @@
 				3BCB22E02A4DCBED00ACD9AF /* LoggingPlugin.swift */,
 			);
 			path = Plugins;
+			sourceTree = "<group>";
+		};
+		3BCB22E22A4DD21B00ACD9AF /* ClientServices */ = {
+			isa = PBXGroup;
+			children = (
+				3BCB22E92A4DD48500ACD9AF /* Base */,
+				3BCB22E32A4DD24D00ACD9AF /* SwapiClientService.swift */,
+			);
+			path = ClientServices;
+			sourceTree = "<group>";
+		};
+		3BCB22E92A4DD48500ACD9AF /* Base */ = {
+			isa = PBXGroup;
+			children = (
+				3BCB22E52A4DD28A00ACD9AF /* Endpoint.swift */,
+				3BCB22E72A4DD2BF00ACD9AF /* NetworkClientError.swift */,
+			);
+			path = Base;
 			sourceTree = "<group>";
 		};
 		7E29D85C26A6FFF9001034D1 = {
@@ -300,9 +325,12 @@
 				3BCB22DE2A4DC15800ACD9AF /* NetworkingService.swift in Sources */,
 				3BCB22E12A4DCBED00ACD9AF /* LoggingPlugin.swift in Sources */,
 				7E29D92926A969D2001034D1 /* SpaceshipView.swift in Sources */,
+				3BCB22E82A4DD2BF00ACD9AF /* NetworkClientError.swift in Sources */,
 				7E29D89B26A70C1A001034D1 /* ZNLSWAPIClient.m in Sources */,
 				7E29D86B26A6FFF9001034D1 /* SceneDelegate.swift in Sources */,
 				7E29D8A626A73243001034D1 /* Planets.swift in Sources */,
+				3BCB22E62A4DD28A00ACD9AF /* Endpoint.swift in Sources */,
+				3BCB22E42A4DD24D00ACD9AF /* SwapiClientService.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
