@@ -7,12 +7,49 @@
 
 import SwiftUI
 
-struct StarWarsSpaceView: UIViewControllerRepresentable {
-    func makeUIViewController(context: Context) -> UIViewController {
-        UIViewController(nibName: String(describing: self), bundle: nil)
+struct StarWarsSpaceView<ViewModel: StarWarsSpaceViewModelProtocol>: View {
+    @ObservedObject var viewModel: ViewModel
+    
+    var body: some View {
+        StarWarsSpaceViewWrapper(onButtonTap: { viewModel.handle(.didTapBrowsePlanets) })
+            .ignoresSafeArea(.all)
+            .toolbar {
+                ToolbarItem(placement: .principal) {
+                    Text("SWAPI")
+                        .font(.headline)
+                        .foregroundColor(.white)
+                }
+            }
     }
     
-    func updateUIViewController(_ uiViewController: UIViewController, context: Context) {
+    init(viewModel: ViewModel) {
+        self.viewModel = viewModel
+    }
+}
+
+// MARK: - StarWarsSpaceViewWrapper
+
+private struct StarWarsSpaceViewWrapper: UIViewControllerRepresentable {
+    let onButtonTap: () -> Void
+    
+    func makeUIViewController(context: Context) -> StarWarsSpaceViewController {
+        let view = StarWarsSpaceViewController(nibName: "StarWarsSpaceViewController", bundle: nil)
+        view.onButtonTap = { onButtonTap() }
+        return view
+    }
+    
+    func updateUIViewController(_ uiViewController: StarWarsSpaceViewController, context: Context) {
         // Nothing to do
+    }
+}
+
+// MARK: - StarWarsSpaceViewController
+
+private final class StarWarsSpaceViewController: UIViewController {
+    var onButtonTap: (() -> Void)?
+    
+    @IBAction
+    private func onButtonTap(sender: UIButton) {
+        onButtonTap?()
     }
 }

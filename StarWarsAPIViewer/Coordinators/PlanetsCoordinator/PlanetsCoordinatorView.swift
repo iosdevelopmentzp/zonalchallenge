@@ -11,6 +11,7 @@ struct PlanetsCoordinatorView: View {
     @ObservedObject var object: PlanetsCoordinatorObject
     
     var body: some View {
-        object.planetsViewModel.map { PlanetsView(viewModel: $0) }
+        object.spaceViewModel.map(StarWarsSpaceView.init(viewModel:))?
+            .navigation(item: $object.planetsViewModel, destination: PlanetsView.init(viewModel:))
     }
 }

@@ -12,11 +12,20 @@ final class PlanetsCoordinatorObject: ObservableObject {
     // MARK: - Properties
     
     @Published var planetsViewModel: PlanetsViewModel?
+    @Published var spaceViewModel: StarWarsSpaceViewModel?
     
     // MARK: - Start
     
     func start() {
-        planetsViewModel = .init(sceneDelegate: self)
+        spaceViewModel = StarWarsSpaceViewModel(sceneDelegate: self)
+    }
+}
+
+// MARK: - PlanetsViewSceneDelegate
+
+extension PlanetsCoordinatorObject: StarWarsSpaceViewSceneDelegate {
+    func didTapBrowsePlanets() {
+        planetsViewModel = PlanetsViewModel(sceneDelegate: self)
     }
 }
 
@@ -24,6 +33,6 @@ final class PlanetsCoordinatorObject: ObservableObject {
 
 extension PlanetsCoordinatorObject: PlanetsViewSceneDelegate {
     func openDetails(for planet: String) {
-        // TODO: - Open Details
+        // TODO: - Open details
     }
 }
