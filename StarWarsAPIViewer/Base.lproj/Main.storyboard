@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="SXG-j7-PLN">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Navigation Controller-->
+        <scene sceneID="kwP-MP-hdl">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="SXG-j7-PLN" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" barStyle="black" id="u6f-tT-n33">
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="44l-or-qFd" kind="relationship" relationship="rootViewController" id="hR8-5s-ERf"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="csK-B9-LC7" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="137.68115942028987" y="93.75"/>
+        </scene>
+        <!--SWAPI-->
+        <scene sceneID="inP-8o-Rh7">
+            <objects>
+                <viewController title="SWAPI" id="44l-or-qFd" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="mbv-32-dkw">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="G1i-PL-Fex" customClass="SpaceView" customModule="StarWarsAPIViewer" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </view>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ijd-W2-jFl">
+                                <rect key="frame" x="107" y="453" width="200" height="44"/>
+                                <color key="backgroundColor" systemColor="systemPurpleColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="200" id="lIW-iF-8T3"/>
+                                    <constraint firstAttribute="height" constant="44" id="uUK-Kb-wSm"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="15"/>
+                                <state key="normal" title="Browse Planets...">
+                                    <color key="titleColor" systemColor="systemBackgroundColor"/>
+                                </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="8"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <segue destination="9oj-77-eLE" kind="show" id="Vuy-IR-w8x"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="Os6-kg-lC1"/>
+                        <color key="backgroundColor" systemColor="labelColor"/>
+                        <constraints>
+                            <constraint firstItem="G1i-PL-Fex" firstAttribute="top" secondItem="mbv-32-dkw" secondAttribute="top" id="AoA-IR-Vf6"/>
+                            <constraint firstItem="Os6-kg-lC1" firstAttribute="trailing" secondItem="G1i-PL-Fex" secondAttribute="trailing" id="NUw-we-zyg"/>
+                            <constraint firstAttribute="bottom" secondItem="G1i-PL-Fex" secondAttribute="bottom" id="T3K-4T-jYd"/>
+                            <constraint firstItem="Ijd-W2-jFl" firstAttribute="centerX" secondItem="Os6-kg-lC1" secondAttribute="centerX" id="WmO-6H-drG"/>
+                            <constraint firstItem="G1i-PL-Fex" firstAttribute="leading" secondItem="Os6-kg-lC1" secondAttribute="leading" id="YD7-ah-ItY"/>
+                            <constraint firstItem="Ijd-W2-jFl" firstAttribute="centerY" secondItem="Os6-kg-lC1" secondAttribute="centerY" id="z4I-5c-SZj"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="SWAPI" id="V8X-8H-JSP"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="yMi-bu-OWW" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="971" y="94"/>
+        </scene>
+        <!--Planets-->
+        <scene sceneID="lzA-e9-vEJ">
+            <objects>
+                <collectionViewController title="Planets" id="9oj-77-eLE" customClass="PlanetsCollectionViewController" customModule="StarWarsAPIViewer" customModuleProvider="target" sceneMemberID="viewController">
+                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="cPj-Qk-tye">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="MB6-km-kxu">
+                            <size key="itemSize" width="128" height="128"/>
+                            <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                            <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                            <inset key="sectionInset" minX="20" minY="0.0" maxX="20" maxY="0.0"/>
+                        </collectionViewFlowLayout>
+                        <cells/>
+                        <connections>
+                            <outlet property="dataSource" destination="9oj-77-eLE" id="A5b-th-H12"/>
+                            <outlet property="delegate" destination="9oj-77-eLE" id="O9E-9g-qBl"/>
+                        </connections>
+                    </collectionView>
+                    <navigationItem key="navigationItem" title="Planets" id="D4k-7T-Z2Z"/>
+                    <connections>
+                        <outlet property="collectionView" destination="cPj-Qk-tye" id="OXW-kg-OmS"/>
+                    </connections>
+                </collectionViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="z4a-Ee-Wo4" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1714" y="94"/>
+        </scene>
+    </scenes>
+    <resources>
+        <systemColor name="labelColor">
+            <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemPurpleColor">
+            <color red="0.68627450980392157" green="0.32156862745098042" blue="0.87058823529411766" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+    </resources>
+</document>
