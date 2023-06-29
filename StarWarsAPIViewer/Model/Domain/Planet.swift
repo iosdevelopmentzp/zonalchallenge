@@ -1,14 +1,13 @@
 //
-//  PlanetDTO.swift
+//  Planet.swift
 //  StarWarsAPIViewer
 //
-//  Created by Scott Runciman on 20/07/2021.
+//  Created by Dmytro Vorko on 29.06.2023.
 //
 
 import Foundation
 
-struct PlanetDTO: Decodable, Hashable {
-
+struct Planet: Equatable {
     let name: String
     let terrain: String
     let population: String

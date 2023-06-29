@@ -13,6 +13,16 @@
 		3BCB22E62A4DD28A00ACD9AF /* Endpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BCB22E52A4DD28A00ACD9AF /* Endpoint.swift */; };
 		3BCB22E82A4DD2BF00ACD9AF /* NetworkClientError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BCB22E72A4DD2BF00ACD9AF /* NetworkClientError.swift */; };
 		3BCB22EE2A4DD5DB00ACD9AF /* StarWarsNetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BCB22ED2A4DD5DB00ACD9AF /* StarWarsNetworkService.swift */; };
+		3BCB22F22A4DF47600ACD9AF /* MainCoordinatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BCB22F12A4DF47600ACD9AF /* MainCoordinatorView.swift */; };
+		3BCB22F42A4DF48F00ACD9AF /* MainCoordinatorObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BCB22F32A4DF48F00ACD9AF /* MainCoordinatorObject.swift */; };
+		3BCB22F72A4DF4CC00ACD9AF /* PlanetsCoordinatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BCB22F62A4DF4CC00ACD9AF /* PlanetsCoordinatorView.swift */; };
+		3BCB22F92A4DF4D700ACD9AF /* PlanetsCoordinatorObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BCB22F82A4DF4D700ACD9AF /* PlanetsCoordinatorObject.swift */; };
+		3BCB22FD2A4DF51C00ACD9AF /* PlanetsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BCB22FC2A4DF51C00ACD9AF /* PlanetsView.swift */; };
+		3BCB22FF2A4DF52800ACD9AF /* PlanetsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BCB22FE2A4DF52800ACD9AF /* PlanetsViewModel.swift */; };
+		3BCB23012A4DF53E00ACD9AF /* PlanetsViewState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BCB23002A4DF53E00ACD9AF /* PlanetsViewState.swift */; };
+		3BCB23052A4DF68200ACD9AF /* Planet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BCB23042A4DF68200ACD9AF /* Planet.swift */; };
+		3BCB23072A4DF68E00ACD9AF /* PlanetsPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BCB23062A4DF68E00ACD9AF /* PlanetsPage.swift */; };
+		3BCB23092A4DFE4300ACD9AF /* PlanetsViewSceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BCB23082A4DFE4300ACD9AF /* PlanetsViewSceneDelegate.swift */; };
 		7E29D86926A6FFF9001034D1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E29D86826A6FFF9001034D1 /* AppDelegate.swift */; };
 		7E29D86B26A6FFF9001034D1 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E29D86A26A6FFF9001034D1 /* SceneDelegate.swift */; };
 		7E29D87026A6FFF9001034D1 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7E29D86E26A6FFF9001034D1 /* Main.storyboard */; };
@@ -44,6 +54,16 @@
 		3BCB22E52A4DD28A00ACD9AF /* Endpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Endpoint.swift; sourceTree = "<group>"; };
 		3BCB22E72A4DD2BF00ACD9AF /* NetworkClientError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkClientError.swift; sourceTree = "<group>"; };
 		3BCB22ED2A4DD5DB00ACD9AF /* StarWarsNetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StarWarsNetworkService.swift; sourceTree = "<group>"; };
+		3BCB22F12A4DF47600ACD9AF /* MainCoordinatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainCoordinatorView.swift; sourceTree = "<group>"; };
+		3BCB22F32A4DF48F00ACD9AF /* MainCoordinatorObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainCoordinatorObject.swift; sourceTree = "<group>"; };
+		3BCB22F62A4DF4CC00ACD9AF /* PlanetsCoordinatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlanetsCoordinatorView.swift; sourceTree = "<group>"; };
+		3BCB22F82A4DF4D700ACD9AF /* PlanetsCoordinatorObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlanetsCoordinatorObject.swift; sourceTree = "<group>"; };
+		3BCB22FC2A4DF51C00ACD9AF /* PlanetsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlanetsView.swift; sourceTree = "<group>"; };
+		3BCB22FE2A4DF52800ACD9AF /* PlanetsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlanetsViewModel.swift; sourceTree = "<group>"; };
+		3BCB23002A4DF53E00ACD9AF /* PlanetsViewState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlanetsViewState.swift; sourceTree = "<group>"; };
+		3BCB23042A4DF68200ACD9AF /* Planet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Planet.swift; sourceTree = "<group>"; };
+		3BCB23062A4DF68E00ACD9AF /* PlanetsPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlanetsPage.swift; sourceTree = "<group>"; };
+		3BCB23082A4DFE4300ACD9AF /* PlanetsViewSceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlanetsViewSceneDelegate.swift; sourceTree = "<group>"; };
 		7E29D86526A6FFF9001034D1 /* StarWarsAPIViewer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = StarWarsAPIViewer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7E29D86826A6FFF9001034D1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		7E29D86A26A6FFF9001034D1 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -133,6 +153,70 @@
 			path = NetworksServices;
 			sourceTree = "<group>";
 		};
+		3BCB22EF2A4DF45000ACD9AF /* Coordinators */ = {
+			isa = PBXGroup;
+			children = (
+				3BCB22F02A4DF46700ACD9AF /* MainCoordinator */,
+				3BCB22F52A4DF4B500ACD9AF /* PlanetsCoordinator */,
+			);
+			path = Coordinators;
+			sourceTree = "<group>";
+		};
+		3BCB22F02A4DF46700ACD9AF /* MainCoordinator */ = {
+			isa = PBXGroup;
+			children = (
+				3BCB22F12A4DF47600ACD9AF /* MainCoordinatorView.swift */,
+				3BCB22F32A4DF48F00ACD9AF /* MainCoordinatorObject.swift */,
+			);
+			path = MainCoordinator;
+			sourceTree = "<group>";
+		};
+		3BCB22F52A4DF4B500ACD9AF /* PlanetsCoordinator */ = {
+			isa = PBXGroup;
+			children = (
+				3BCB22F62A4DF4CC00ACD9AF /* PlanetsCoordinatorView.swift */,
+				3BCB22F82A4DF4D700ACD9AF /* PlanetsCoordinatorObject.swift */,
+			);
+			path = PlanetsCoordinator;
+			sourceTree = "<group>";
+		};
+		3BCB22FA2A4DF50200ACD9AF /* Scenes */ = {
+			isa = PBXGroup;
+			children = (
+				3BCB22FB2A4DF50C00ACD9AF /* PlanetsScene */,
+			);
+			path = Scenes;
+			sourceTree = "<group>";
+		};
+		3BCB22FB2A4DF50C00ACD9AF /* PlanetsScene */ = {
+			isa = PBXGroup;
+			children = (
+				3BCB22FC2A4DF51C00ACD9AF /* PlanetsView.swift */,
+				3BCB22FE2A4DF52800ACD9AF /* PlanetsViewModel.swift */,
+				3BCB23002A4DF53E00ACD9AF /* PlanetsViewState.swift */,
+				3BCB23082A4DFE4300ACD9AF /* PlanetsViewSceneDelegate.swift */,
+			);
+			path = PlanetsScene;
+			sourceTree = "<group>";
+		};
+		3BCB23022A4DF64E00ACD9AF /* DTO */ = {
+			isa = PBXGroup;
+			children = (
+				7E29D8A126A71D78001034D1 /* PlanetDTO.swift */,
+				7E29D8A526A73243001034D1 /* PlanetsPageDTO.swift */,
+			);
+			path = DTO;
+			sourceTree = "<group>";
+		};
+		3BCB23032A4DF65900ACD9AF /* Domain */ = {
+			isa = PBXGroup;
+			children = (
+				3BCB23042A4DF68200ACD9AF /* Planet.swift */,
+				3BCB23062A4DF68E00ACD9AF /* PlanetsPage.swift */,
+			);
+			path = Domain;
+			sourceTree = "<group>";
+		};
 		7E29D85C26A6FFF9001034D1 = {
 			isa = PBXGroup;
 			children = (
@@ -154,6 +238,8 @@
 		7E29D86726A6FFF9001034D1 /* StarWarsAPIViewer */ = {
 			isa = PBXGroup;
 			children = (
+				3BCB22FA2A4DF50200ACD9AF /* Scenes */,
+				3BCB22EF2A4DF45000ACD9AF /* Coordinators */,
 				3BCB22DB2A4DC12200ACD9AF /* Services */,
 				7E29D92A26A96D79001034D1 /* Views */,
 				7E29D8AA26A81DE1001034D1 /* Data Source */,
@@ -181,8 +267,8 @@
 		7E29D8A826A81DC2001034D1 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				7E29D8A126A71D78001034D1 /* PlanetDTO.swift */,
-				7E29D8A526A73243001034D1 /* PlanetsPageDTO.swift */,
+				3BCB23032A4DF65900ACD9AF /* Domain */,
+				3BCB23022A4DF64E00ACD9AF /* DTO */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -317,13 +403,23 @@
 				7E29D89F26A71C61001034D1 /* PlanetsCollectionViewController.swift in Sources */,
 				7E29D8A426A72A2A001034D1 /* PlanetsSnapshotProvider.swift in Sources */,
 				7E29D8A226A71D78001034D1 /* PlanetDTO.swift in Sources */,
+				3BCB23092A4DFE4300ACD9AF /* PlanetsViewSceneDelegate.swift in Sources */,
+				3BCB23072A4DF68E00ACD9AF /* PlanetsPage.swift in Sources */,
+				3BCB23012A4DF53E00ACD9AF /* PlanetsViewState.swift in Sources */,
+				3BCB23052A4DF68200ACD9AF /* Planet.swift in Sources */,
 				7E29D8B126A87ADF001034D1 /* SpaceView.swift in Sources */,
 				3BCB22DE2A4DC15800ACD9AF /* NetworkingService.swift in Sources */,
+				3BCB22F72A4DF4CC00ACD9AF /* PlanetsCoordinatorView.swift in Sources */,
+				3BCB22F42A4DF48F00ACD9AF /* MainCoordinatorObject.swift in Sources */,
+				3BCB22FF2A4DF52800ACD9AF /* PlanetsViewModel.swift in Sources */,
+				3BCB22FD2A4DF51C00ACD9AF /* PlanetsView.swift in Sources */,
 				3BCB22E12A4DCBED00ACD9AF /* LoggingPlugin.swift in Sources */,
+				3BCB22F92A4DF4D700ACD9AF /* PlanetsCoordinatorObject.swift in Sources */,
 				3BCB22EE2A4DD5DB00ACD9AF /* StarWarsNetworkService.swift in Sources */,
 				7E29D92926A969D2001034D1 /* SpaceshipView.swift in Sources */,
 				3BCB22E82A4DD2BF00ACD9AF /* NetworkClientError.swift in Sources */,
 				7E29D86B26A6FFF9001034D1 /* SceneDelegate.swift in Sources */,
+				3BCB22F22A4DF47600ACD9AF /* MainCoordinatorView.swift in Sources */,
 				7E29D8A626A73243001034D1 /* PlanetsPageDTO.swift in Sources */,
 				3BCB22E62A4DD28A00ACD9AF /* Endpoint.swift in Sources */,
 				3BCB22E42A4DD24D00ACD9AF /* SwapiClientService.swift in Sources */,
