@@ -5,6 +5,8 @@
 //  Created by Dmytro Vorko on 29.06.2023.
 //
 
+import Foundation
+
 /// The protocol that defines a network session capable of loading data asynchronously for a given URL request.
 protocol NetworkSessionProtocol {
     func loadData(for request: URLRequest) async throws -> (data: Data, urlResponse: URLResponse)
@@ -52,32 +54,43 @@ enum NetworkingError: Error {
 final class NetworkingService: NSObject, NetworkingServiceProtocol {
     // MARK: - Properties
     
-    private let _session: NetworkSessionProtocol?
-    
-    private lazy var session: NetworkSessionProtocol = _session ?? {
-        let configuration = URLSessionConfiguration.default
-        configuration.urlCache = .init(memoryCapacity: 0, diskCapacity: 0)
-        return URLSession(configuration: configuration, delegate: self, delegateQueue: nil)
-    }()
+    private let session: NetworkSessionProtocol
     
     private let plugins: [NetworkingPluginProtocol]
     
     // MARK: - Constructor
     
     init(
-        session: NetworkSessionProtocol? = nil,
+        session: NetworkSessionProtocol = URLSession.shared,
         plugins: [NetworkingPluginProtocol] = []
     ) {
         self.plugins = plugins
-        _session = session
+        self.session = session
     }
     
     // MARK: - NetworkingServiceProtocol
     
     func loadData(_ request: URLRequest) async throws -> Data {
-        let response: (data: Data, urlResponse: URLResponse)
+        let identifier = abs(UUID().hashValue)
         
-        response = try await session.loadData(for: request)
+        plugins.forEach {
+            $0.willStartRequest(identifier: identifier, request)
+        }
+        
+        let response: (data: Data, urlResponse: URLResponse)
+        do {
+            response = try await session.loadData(for: request)
+        } catch {
+            plugins.forEach {
+                $0.requestDidFail(identifier: identifier, with: error, request: request)
+            }
+            
+            throw error
+        }
+        
+        plugins.forEach {
+            $0.requestDidSucceed(identifier: identifier, request: request, response: response.urlResponse, data: response.data)
+        }
         
         guard let httpUrlResponse = response.urlResponse as? HTTPURLResponse else {
             throw NetworkingError.unableToGetResponseCode
@@ -95,43 +108,3 @@ final class NetworkingService: NSObject, NetworkingServiceProtocol {
         }
     }
 }
-
-// MARK: - URLSessionDataDelegate
-
-extension NetworkingService: URLSessionDataDelegate {
-    func urlSession(_ session: URLSession, task: URLSessionTask, willBeginDelayedRequest request: URLRequest) async -> (URLSession.DelayedRequestDisposition, URLRequest?) {
-        if let request = task.originalRequest {
-            plugins.forEach {
-                $0.willStartRequest(identifier: task.taskIdentifier, request)
-            }
-        }
-        return (.continueLoading, nil)
-    }
-    
-    func urlSession(_ session: URLSession, dataTask: URLSessionDataTask, didReceive data: Data) {
-        guard let request = dataTask.originalRequest, let response = dataTask.response else {
-            return
-        }
-        plugins.forEach {
-            $0.requestDidSucceed(
-                identifier: dataTask.taskIdentifier,
-                request: request,
-                response: response,
-                data: data
-            )
-        }
-    }
-    func urlSession(_ session: URLSession, task: URLSessionTask, didCompleteWithError error: Error?) {
-        guard let request = task.originalRequest else {
-            return
-        }
-        plugins.forEach {
-            $0.requestDidFail(
-                identifier: task.taskIdentifier,
-                with: error ?? NSError(domain: "urlSessiontaskdidCompleteWithError", code: -100),
-                request: request
-            )
-        }
-    }
-}
-

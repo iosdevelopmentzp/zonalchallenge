@@ -18,7 +18,6 @@
 		7E29D87026A6FFF9001034D1 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7E29D86E26A6FFF9001034D1 /* Main.storyboard */; };
 		7E29D87226A6FFFC001034D1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7E29D87126A6FFFC001034D1 /* Assets.xcassets */; };
 		7E29D87526A6FFFC001034D1 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7E29D87326A6FFFC001034D1 /* LaunchScreen.storyboard */; };
-		7E29D89B26A70C1A001034D1 /* ZNLSWAPIClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E29D89A26A70C1A001034D1 /* ZNLSWAPIClient.m */; };
 		7E29D89F26A71C61001034D1 /* PlanetsCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E29D89E26A71C61001034D1 /* PlanetsCollectionViewController.swift */; };
 		7E29D8A226A71D78001034D1 /* PlanetDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E29D8A126A71D78001034D1 /* PlanetDTO.swift */; };
 		7E29D8A426A72A2A001034D1 /* PlanetsSnapshotProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E29D8A326A72A2A001034D1 /* PlanetsSnapshotProvider.swift */; };
@@ -54,9 +53,6 @@
 		7E29D87626A6FFFC001034D1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		7E29D87B26A6FFFC001034D1 /* StarWarsAPIViewerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = StarWarsAPIViewerTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		7E29D88126A6FFFC001034D1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		7E29D89826A70C1A001034D1 /* StarWarsAPIViewer-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "StarWarsAPIViewer-Bridging-Header.h"; sourceTree = "<group>"; };
-		7E29D89926A70C1A001034D1 /* ZNLSWAPIClient.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZNLSWAPIClient.h; sourceTree = "<group>"; };
-		7E29D89A26A70C1A001034D1 /* ZNLSWAPIClient.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZNLSWAPIClient.m; sourceTree = "<group>"; };
 		7E29D89E26A71C61001034D1 /* PlanetsCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlanetsCollectionViewController.swift; sourceTree = "<group>"; };
 		7E29D8A126A71D78001034D1 /* PlanetDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlanetDTO.swift; sourceTree = "<group>"; };
 		7E29D8A326A72A2A001034D1 /* PlanetsSnapshotProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlanetsSnapshotProvider.swift; sourceTree = "<group>"; };
@@ -163,14 +159,12 @@
 				7E29D8AA26A81DE1001034D1 /* Data Source */,
 				7E29D8A926A81DD3001034D1 /* View Controllers */,
 				7E29D8A826A81DC2001034D1 /* Model */,
-				7E29D8A726A81DB5001034D1 /* API Client */,
 				7E29D86826A6FFF9001034D1 /* AppDelegate.swift */,
 				7E29D86A26A6FFF9001034D1 /* SceneDelegate.swift */,
 				7E29D86E26A6FFF9001034D1 /* Main.storyboard */,
 				7E29D87126A6FFFC001034D1 /* Assets.xcassets */,
 				7E29D87326A6FFFC001034D1 /* LaunchScreen.storyboard */,
 				7E29D87626A6FFFC001034D1 /* Info.plist */,
-				7E29D89826A70C1A001034D1 /* StarWarsAPIViewer-Bridging-Header.h */,
 			);
 			path = StarWarsAPIViewer;
 			sourceTree = "<group>";
@@ -182,15 +176,6 @@
 				7E29D8AB26A85C6E001034D1 /* ZNLSWAPIClientTests.swift */,
 			);
 			path = StarWarsAPIViewerTests;
-			sourceTree = "<group>";
-		};
-		7E29D8A726A81DB5001034D1 /* API Client */ = {
-			isa = PBXGroup;
-			children = (
-				7E29D89926A70C1A001034D1 /* ZNLSWAPIClient.h */,
-				7E29D89A26A70C1A001034D1 /* ZNLSWAPIClient.m */,
-			);
-			path = "API Client";
 			sourceTree = "<group>";
 		};
 		7E29D8A826A81DC2001034D1 /* Model */ = {
@@ -338,7 +323,6 @@
 				3BCB22EE2A4DD5DB00ACD9AF /* StarWarsNetworkService.swift in Sources */,
 				7E29D92926A969D2001034D1 /* SpaceshipView.swift in Sources */,
 				3BCB22E82A4DD2BF00ACD9AF /* NetworkClientError.swift in Sources */,
-				7E29D89B26A70C1A001034D1 /* ZNLSWAPIClient.m in Sources */,
 				7E29D86B26A6FFF9001034D1 /* SceneDelegate.swift in Sources */,
 				7E29D8A626A73243001034D1 /* PlanetsPageDTO.swift in Sources */,
 				3BCB22E62A4DD28A00ACD9AF /* Endpoint.swift in Sources */,
@@ -515,7 +499,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.zonal.StarWarsAPIViewer;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_OBJC_BRIDGING_HEADER = "StarWarsAPIViewer/StarWarsAPIViewer-Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -537,7 +521,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.zonal.StarWarsAPIViewer;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_OBJC_BRIDGING_HEADER = "StarWarsAPIViewer/StarWarsAPIViewer-Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};

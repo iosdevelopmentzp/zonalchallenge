@@ -19,24 +19,15 @@ class PlanetSnapshotProvider {
     /// Called when a change to the Planets occurs
     var onSnapshotUpdate: ((NSDiffableDataSourceSnapshot<PlanetSections, PlanetDTO>) -> Void)?
     
-    private let apiClient = ZNLSWAPIClient(baseURL: URL(string: "https://swapi.dev/api/")!, using: URLSession.init(configuration: .ephemeral))
+    private let newApiClient = StarWarsNetworkService(client: SwapiClientService(networking: NetworkingService(plugins: [LoggingPlugin()]), baseURL: "https://swapi.dev/"))
     
-    
-    /// Performs a fresh request to get a list of Planets from SWAPI. Any updates to the data will be passed to the `onSnapshotUpdate` closure
     func fetch() {
-        apiClient.beginRequest(forEndpoint: "planets") { data, error in
-            
-            
-            guard let responseData = data else {
-                return
-            }
-            
+        Task {
             do {
-                let planets = try JSONDecoder().decode(PlanetsPageDTO.self, from: responseData)
-                
+                let page = try await newApiClient.loadPlanetsFirstPage()
                 var snapshot = NSDiffableDataSourceSnapshot<PlanetSections, PlanetDTO>()
                 snapshot.appendSections([.main])
-                snapshot.appendItems(planets.planets)
+                snapshot.appendItems(page.planets)
                 
                 self.onSnapshotUpdate?(snapshot)
             } catch {
