@@ -14,6 +14,7 @@ final class Pagination<PageDependency: PaginationDependency, Element> {
     // MARK: - Nested
     
     struct PageState {
+        public let isRefreshing: Bool
         public let isLoading: Bool
         public let error: Error?
         public let elements: [Element]
@@ -28,6 +29,7 @@ final class Pagination<PageDependency: PaginationDependency, Element> {
     
     // MARK: - Properties
     
+    private var refreshTask: Task<Void, Never>?
     private var task: Task<Void, Never>?
     private var nextDependency: PageDependency?
     private let pageProvider: PageProviderClosure
@@ -43,34 +45,39 @@ final class Pagination<PageDependency: PaginationDependency, Element> {
     ) {
         self.pageProvider = pageProvider
         self.inititalDependencyProvider = inititalDependencyProvider
-        self.pageState = .init(isLoading: false, error: nil, elements: [])
+        self.pageState = .init(isRefreshing: false, isLoading: false, error: nil, elements: [])
     }
     
     func refresh() {
         self.task?.cancel()
-        self.pageState = .init(isLoading: true, error: nil, elements: self.pageState.elements)
+        self.task = nil
         
-        self.task = Task {
+        guard self.refreshTask == nil else {
+            return
+        }
+        self.pageState = .init(isRefreshing: true, isLoading: false, error: nil, elements: self.pageState.elements)
+        
+        self.refreshTask = Task {
             let result = await Result { try await self.pageProvider(self.inititalDependencyProvider()) }
             guard !Task.isCancelled else { return }
             
             switch result {
             case .success(let pageDependency):
                 self.nextDependency = pageDependency.nextDependency
-                self.pageState = .init(isLoading: false, error: nil, elements: pageDependency.elements)
+                self.pageState = .init(isRefreshing: false, isLoading: false, error: nil, elements: pageDependency.elements)
             case .failure(let error):
-                self.pageState = .init(isLoading: false, error: error, elements: self.pageState.elements)
+                self.pageState = .init(isRefreshing: false, isLoading: false, error: error, elements: self.pageState.elements)
             }
-            self.task = nil
+            self.refreshTask = nil
         }
     }
     
     func loadNext() {
-        guard self.task == nil, let nextDependency = self.nextDependency else {
+        guard self.task == nil, self.refreshTask == nil, let nextDependency = self.nextDependency else {
             return
         }
         
-        self.pageState = .init(isLoading: true, error: nil, elements: self.pageState.elements)
+        self.pageState = .init(isRefreshing: false, isLoading: true, error: nil, elements: self.pageState.elements)
         
         self.task = Task {
             let result = await Result { try await self.pageProvider(nextDependency) }
@@ -80,13 +87,14 @@ final class Pagination<PageDependency: PaginationDependency, Element> {
             case .success(let pageDependency):
                 self.nextDependency = pageDependency.nextDependency
                 self.pageState = .init(
+                    isRefreshing: false,
                     isLoading: false,
                     error: nil,
                     elements: self.pageState.elements + pageDependency.elements
                 )
                 
             case .failure(let error):
-                self.pageState = .init(isLoading: false, error: error, elements: self.pageState.elements)
+                self.pageState = .init(isRefreshing: false, isLoading: false, error: error, elements: self.pageState.elements)
             }
             
             self.task = nil

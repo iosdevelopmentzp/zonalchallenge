@@ -43,13 +43,15 @@ struct PlanetsView<ViewModel: PlanetsViewModelProtocol>: View {
                     }
                 }
                 
-            case .loading(let planets):
+            case .loading(let planets), .refreshing(let planets):
                 if (planets ?? []).isEmpty {
                     ProgressView()
                 }
             }
             
-            renderPlanetsListIfNeeded()
+            if !viewModel.state.planets.isEmpty {
+                renderPlanetsList()
+            }
         }
         .navigationTitle("Planets")
         .onAppear {
@@ -58,41 +60,44 @@ struct PlanetsView<ViewModel: PlanetsViewModelProtocol>: View {
     }
     
     @ViewBuilder
-    private func renderPlanetsListIfNeeded() -> some View {
-        ScrollView {
-            if let planetItems = viewModel.state.planets, !planetItems.isEmpty {
-                LazyVGrid(
-                    columns: [.init(.flexible(), spacing: 0, alignment: .top)],
-                    spacing: 0,
-                    content: {
-                        ForEach(planetItems.indices, id: \.self) { index in
-                            let item = planetItems[index]
-                            makeCell(item: item, divider: item != planetItems.last)
-                                .onTapGesture {
-                                    viewModel.handle(.didTapItem(item))
-                                }
+    private func renderPlanetsList() -> some View {
+        LazyVGrid(
+            columns: [.init(.flexible(), spacing: 0, alignment: .top)],
+            spacing: 0,
+            content: {
+                ForEach(viewModel.state.planets.indices, id: \.self) { index in
+                    let item = viewModel.state.planets[index]
+                    makeCell(item: item, divider: item != viewModel.state.planets.last)
+                        .onTapGesture {
+                            viewModel.handle(.didTapItem(item))
                         }
-                        
-                        Color.clear.frame(height: 0)
-                            .onAppear {
-                                viewModel.handle(.didReachBottom)
-                            }
-                        
-                        if viewModel.state.isLoading {
-                            ProgressView()
-                                .frame(minHeight: 50)
+                }
+                
+                if !viewModel.state.isRefreshing {
+                    Color.clear.frame(height: 0)
+                        .onAppear {
+                            viewModel.handle(.didReachBottom)
                         }
-                    }
-                )
-                .padding([.horizontal])
-                .background(
-                    Color.white
-                        .cornerRadius(8)
-                        .padding([.horizontal])
-                )
+                }
+                
+                if viewModel.state.isLoading {
+                    ProgressView()
+                        .frame(minHeight: 50)
+                }
             }
-        }
-        .clipped()
+        )
+        .padding([.horizontal])
+        .background(
+            Color.white
+                .cornerRadius(8)
+                .padding([.horizontal])
+        )
+        .modifier(
+            RefreshableScrollViewModifier(
+                action: { viewModel.handle(.didTapRefresh) },
+                isRefreshing: .init(get: { viewModel.state.isRefreshing }, set: { _ in })
+            )
+        )
     }
     
     @ViewBuilder

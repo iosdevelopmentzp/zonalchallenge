@@ -107,6 +107,8 @@ final class PlanetsViewModel: ObservableObject, PlanetsViewModelProtocol {
                     self.state = .Factory.make(.failedLoading(planets: self.state.planets, error: error))
                 } else if paginationState.isLoading {
                     self.state = .Factory.make(.loading(planets: self.state.planets))
+                } else if paginationState.isRefreshing {
+                    self.state = .Factory.make(.refreshing(planets: self.state.planets))
                 } else {
                     self.state = .Factory.make(.loaded(planets: paginationState.elements))
                 }

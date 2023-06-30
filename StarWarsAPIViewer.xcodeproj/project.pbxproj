@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		3B76DCC42A4EEAED00FACAA4 /* StarWarsUseCaseProtocolPreviewMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B76DCC32A4EEAED00FACAA4 /* StarWarsUseCaseProtocolPreviewMock.swift */; };
+		3B76DCC62A4F1ABD00FACAA4 /* RefreshableScrollViewModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B76DCC52A4F1ABD00FACAA4 /* RefreshableScrollViewModifier.swift */; };
 		3BCB22DE2A4DC15800ACD9AF /* NetworkingService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BCB22DD2A4DC15800ACD9AF /* NetworkingService.swift */; };
 		3BCB22E12A4DCBED00ACD9AF /* LoggingPlugin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BCB22E02A4DCBED00ACD9AF /* LoggingPlugin.swift */; };
 		3BCB22E42A4DD24D00ACD9AF /* SwapiClientService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BCB22E32A4DD24D00ACD9AF /* SwapiClientService.swift */; };
@@ -57,6 +58,7 @@
 
 /* Begin PBXFileReference section */
 		3B76DCC32A4EEAED00FACAA4 /* StarWarsUseCaseProtocolPreviewMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StarWarsUseCaseProtocolPreviewMock.swift; sourceTree = "<group>"; };
+		3B76DCC52A4F1ABD00FACAA4 /* RefreshableScrollViewModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RefreshableScrollViewModifier.swift; sourceTree = "<group>"; };
 		3BCB22DD2A4DC15800ACD9AF /* NetworkingService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkingService.swift; sourceTree = "<group>"; };
 		3BCB22E02A4DCBED00ACD9AF /* LoggingPlugin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoggingPlugin.swift; sourceTree = "<group>"; };
 		3BCB22E32A4DD24D00ACD9AF /* SwapiClientService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwapiClientService.swift; sourceTree = "<group>"; };
@@ -267,6 +269,7 @@
 			isa = PBXGroup;
 			children = (
 				3BCB234F2A4E330900ACD9AF /* View+Navigation.swift */,
+				3B76DCC52A4F1ABD00FACAA4 /* RefreshableScrollViewModifier.swift */,
 			);
 			path = SwiftUI;
 			sourceTree = "<group>";
@@ -498,6 +501,7 @@
 				7E29D8A226A71D78001034D1 /* PlanetDTO.swift in Sources */,
 				3BCB23092A4DFE4300ACD9AF /* PlanetsViewSceneDelegate.swift in Sources */,
 				3BCB23072A4DF68E00ACD9AF /* PlanetsPage.swift in Sources */,
+				3B76DCC62A4F1ABD00FACAA4 /* RefreshableScrollViewModifier.swift in Sources */,
 				3BCB23012A4DF53E00ACD9AF /* PlanetsViewState.swift in Sources */,
 				3BCB23052A4DF68200ACD9AF /* Planet.swift in Sources */,
 				7E29D8B126A87ADF001034D1 /* SpaceView.swift in Sources */,

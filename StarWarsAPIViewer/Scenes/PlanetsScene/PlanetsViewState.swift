@@ -21,6 +21,8 @@ enum PlanetsViewState: Hashable {
     case failedLoading(errorMessage: String, planets: [PlanetItem]?)
     /// Represents the loading state, indicating that the planets are being loaded.
     case loading(planets: [PlanetItem]?)
+    
+    case refreshing(planets: [PlanetItem]?)
     /// Represents the loaded state, indicating that the planets have been successfully loaded.
     case loaded(planets: [PlanetItem])
 }
@@ -31,6 +33,7 @@ extension PlanetsViewState {
     /// A factory class for creating instances of `PlanetsViewState`.
     struct Factory {
         enum InputDataConditions {
+            case refreshing(planets: [PlanetItem]?)
             case loading(planets: [PlanetItem]?)
             case failedLoading(planets: [PlanetItem]?, error: Error)
             case loaded(planets: [Planet])
@@ -38,6 +41,9 @@ extension PlanetsViewState {
         
         static func make(_ dataConditions: InputDataConditions) -> PlanetsViewState {
             switch dataConditions {
+            case .refreshing(let planets):
+                return .refreshing(planets: planets)
+                
             case .loading(let planets):
                 return .loading(planets: planets)
                 
@@ -64,7 +70,7 @@ extension PlanetsViewState {
     /// Computed property that returns the planets associated with the current state.
     var planets: [PlanetItem] {
         switch self {
-        case .failedLoading(_, let planets), .loading(let planets):
+        case .failedLoading(_, let planets), .loading(let planets), .refreshing(let planets):
             return planets ?? []
             
         case .loaded(let planets):
@@ -77,6 +83,14 @@ extension PlanetsViewState {
     
     var isLoading: Bool {
         guard case .loading = self else {
+            return false
+        }
+        
+        return true
+    }
+    
+    var isRefreshing: Bool {
+        guard case .refreshing = self else {
             return false
         }
         
