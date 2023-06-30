@@ -91,7 +91,6 @@ final class PlanetsViewModel: ObservableObject, PlanetsViewModelProtocol {
             pagination.loadNext()
             
         case .didTapItem(let planetItem):
-            debugPrint("Did tap item: \(planetItem)")
             sceneDelegate?.openDetails(for: planetItem.name)
         }
     }

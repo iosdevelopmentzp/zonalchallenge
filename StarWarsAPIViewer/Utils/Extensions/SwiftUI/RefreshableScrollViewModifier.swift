@@ -8,19 +8,34 @@
 import SwiftUI
 
 /// Source: https://dev.to/gualtierofr/pull-down-to-refresh-in-swiftui-4j26
-struct RefreshableScrollViewModifier: ViewModifier {
-    let belowIOS15Input: (action: () -> Void, isRefreshing: Binding<Bool>)
-    let fromIOS15Action: () async -> Void
+struct RefreshableScrollViewModifier<BottomContent: View>: ViewModifier {
+    private let belowIOS15Input: (action: () -> Void, isRefreshing: Binding<Bool>)
+    private let fromIOS15Action: () async -> Void
+    private let bottomContent: () -> BottomContent
 
     func body(content: Content) -> some View {
-        RefreshableScrollView(belowIOS15Input: belowIOS15Input, fromIOS15Action: fromIOS15Action) {
-            content
-        }
+        RefreshableScrollView(
+            belowIOS15Input: belowIOS15Input,
+            fromIOS15Action: fromIOS15Action,
+            content: { content },
+            bottomContent: { bottomContent() }
+        )
+    }
+    
+    init(
+        belowIOS15Input: (action: () -> Void, isRefreshing: Binding<Bool>),
+        fromIOS15Action: @escaping () async -> Void,
+        @ViewBuilder bottomContent: @escaping () -> BottomContent
+    ) {
+        self.belowIOS15Input = belowIOS15Input
+        self.fromIOS15Action = fromIOS15Action
+        self.bottomContent = bottomContent
     }
 }
 
-private struct RefreshableScrollView<Content: View>: View {
+private struct RefreshableScrollView<Content: View, BottomContent: View>: View {
     private let content: () -> Content
+    private let bottomContent: () -> BottomContent
     /* Below iOS 15 */
     @Binding private var isRefreshing: Bool
     private let belowIOS15Action: () -> Void
@@ -32,9 +47,11 @@ private struct RefreshableScrollView<Content: View>: View {
     init(
         belowIOS15Input: (action: () -> Void, isRefreshing: Binding<Bool>),
         fromIOS15Action: @escaping () async -> Void,
-        @ViewBuilder content: @escaping () -> Content
+        @ViewBuilder content: @escaping () -> Content,
+        @ViewBuilder bottomContent: @escaping () -> BottomContent
     ) {
         self.content = content
+        self.bottomContent = bottomContent
         self._isRefreshing = belowIOS15Input.isRefreshing
         self.belowIOS15Action = belowIOS15Input.action
         self.fromIOS15Action = fromIOS15Action
@@ -43,6 +60,7 @@ private struct RefreshableScrollView<Content: View>: View {
         if #available(iOS 15, *) {
             ScrollView {
                 content()
+                bottomContent()
             }
             .refreshable {
                 await fromIOS15Action()
@@ -61,6 +79,7 @@ private struct RefreshableScrollView<Content: View>: View {
                         .anchorPreference(key: OffsetPreferenceKey.self, value: .top) { value -> CGFloat in
                             geometry[value].y
                         }
+                    bottomContent()
                 }
                 .onPreferenceChange(OffsetPreferenceKey.self) { offset in
                     if offset > threshold {

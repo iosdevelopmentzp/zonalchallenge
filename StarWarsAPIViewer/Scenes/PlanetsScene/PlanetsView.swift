@@ -13,6 +13,19 @@ struct PlanetsView<ViewModel: PlanetsViewModelProtocol>: View {
     
     @ObservedObject private var viewModel: ViewModel
     
+    @Environment(\.horizontalSizeClass) var horizontalSizeClass
+    
+    var gridItems: [SwiftUI.GridItem] {
+        if horizontalSizeClass == .regular {
+            return [
+                .init(.flexible(), alignment: .top),
+                .init(.flexible(), alignment: .top)
+            ]
+        } else {
+            return [.init(.flexible(), spacing: 0, alignment: .top)]
+        }
+    }
+    
     var body: some View {
         ZStack {
             Color(UIColor.systemGray6).ignoresSafeArea()
@@ -81,31 +94,22 @@ private extension PlanetsView {
     
     @ViewBuilder
     private func renderPlanetsList() -> some View {
-        LazyVGrid(
-            columns: [.init(.flexible(), spacing: 0, alignment: .top)],
-            spacing: 0,
-            content: {
-                ForEach(viewModel.state.planets.indices, id: \.self) { index in
-                    let item = viewModel.state.planets[index]
-                    makeCell(item: item, divider: item != viewModel.state.planets.last)
-                        .onTapGesture {
-                            viewModel.handle(.didTapItem(item))
-                        }
-                }
-                
-                if !viewModel.state.isRefreshing {
-                    Color.clear.frame(height: 0)
-                        .onAppear {
-                            viewModel.handle(.didReachBottom)
-                        }
-                }
-                
-                if viewModel.state.isLoading {
-                    ProgressView()
-                        .frame(minHeight: 50)
-                }
+        LazyVGrid(columns: gridItems, spacing: 0) {
+            ForEach(viewModel.state.planets.indices, id: \.self) { index in
+                let item = viewModel.state.planets[index]
+                makeCell(item: item, divider: item != viewModel.state.planets.last)
+                    .onTapGesture {
+                        viewModel.handle(.didTapItem(item))
+                    }
             }
-        )
+            
+            if !viewModel.state.isRefreshing, !viewModel.state.isLoading {
+                Color.clear.frame(height: 0)
+                    .onAppear {
+                        viewModel.handle(.didReachBottom)
+                    }
+            }
+        }
         .padding([.horizontal])
         .background(
             Color.white
@@ -121,6 +125,12 @@ private extension PlanetsView {
                 fromIOS15Action: {
                     viewModel.handle(.didTapRefresh)
                     await awaitWhileRefreshableIsTrue()
+                },
+                bottomContent: {
+                    if viewModel.state.isLoading {
+                        ProgressView()
+                            .frame(minHeight: 50)
+                    }
                 }
             )
         )
