@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3B76DCC42A4EEAED00FACAA4 /* StarWarsUseCaseProtocolPreviewMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B76DCC32A4EEAED00FACAA4 /* StarWarsUseCaseProtocolPreviewMock.swift */; };
 		3BCB22DE2A4DC15800ACD9AF /* NetworkingService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BCB22DD2A4DC15800ACD9AF /* NetworkingService.swift */; };
 		3BCB22E12A4DCBED00ACD9AF /* LoggingPlugin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BCB22E02A4DCBED00ACD9AF /* LoggingPlugin.swift */; };
 		3BCB22E42A4DD24D00ACD9AF /* SwapiClientService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BCB22E32A4DD24D00ACD9AF /* SwapiClientService.swift */; };
@@ -55,6 +56,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		3B76DCC32A4EEAED00FACAA4 /* StarWarsUseCaseProtocolPreviewMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StarWarsUseCaseProtocolPreviewMock.swift; sourceTree = "<group>"; };
 		3BCB22DD2A4DC15800ACD9AF /* NetworkingService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkingService.swift; sourceTree = "<group>"; };
 		3BCB22E02A4DCBED00ACD9AF /* LoggingPlugin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoggingPlugin.swift; sourceTree = "<group>"; };
 		3BCB22E32A4DD24D00ACD9AF /* SwapiClientService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwapiClientService.swift; sourceTree = "<group>"; };
@@ -114,6 +116,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		3B76DCC22A4EEAD200FACAA4 /* SwiftPreviewMocks */ = {
+			isa = PBXGroup;
+			children = (
+				3B76DCC32A4EEAED00FACAA4 /* StarWarsUseCaseProtocolPreviewMock.swift */,
+			);
+			path = SwiftPreviewMocks;
+			sourceTree = "<group>";
+		};
 		3BCB22DB2A4DC12200ACD9AF /* Services */ = {
 			isa = PBXGroup;
 			children = (
@@ -246,6 +256,7 @@
 		3BCB234C2A4E329100ACD9AF /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				3B76DCC22A4EEAD200FACAA4 /* SwiftPreviewMocks */,
 				3BCB23512A4E387100ACD9AF /* Pagination */,
 				3BCB234E2A4E32D600ACD9AF /* Extensions */,
 			);
@@ -480,6 +491,7 @@
 				3BCB230C2A4DFFD600ACD9AF /* StarWarsSpaceView.swift in Sources */,
 				7E29D86926A6FFF9001034D1 /* AppDelegate.swift in Sources */,
 				3BCB230E2A4DFFE900ACD9AF /* StarWarsSpaceViewModel.swift in Sources */,
+				3B76DCC42A4EEAED00FACAA4 /* StarWarsUseCaseProtocolPreviewMock.swift in Sources */,
 				7E29D89F26A71C61001034D1 /* PlanetsCollectionViewController.swift in Sources */,
 				7E29D8A426A72A2A001034D1 /* PlanetsSnapshotProvider.swift in Sources */,
 				3BCB23562A4E3C5500ACD9AF /* Result+Async.swift in Sources */,

@@ -36,7 +36,7 @@ final class StarWarsUseCase: StarWarsUseCaseProtocol {
 
 // MARK: - PlanetsPage Constructor
 
-private extension PlanetsPage {
+extension PlanetsPage {
     init(planetPage: PlanetsPageDTO) {
         self = .init(next: planetPage.next, planets: planetPage.planets.map {
             Planet(name: $0.name, terrain: $0.terrain, population: $0.population)

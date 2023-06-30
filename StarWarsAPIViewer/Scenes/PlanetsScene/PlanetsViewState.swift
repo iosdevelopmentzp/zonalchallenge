@@ -62,17 +62,25 @@ extension PlanetsViewState {
 
 extension PlanetsViewState {
     /// Computed property that returns the planets associated with the current state.
-    var planets: [PlanetItem]? {
+    var planets: [PlanetItem] {
         switch self {
         case .failedLoading(_, let planets), .loading(let planets):
-            return planets
+            return planets ?? []
             
         case .loaded(let planets):
             return planets
             
         case .idle, .emptyList:
-            return nil
+            return []
         }
+    }
+    
+    var isLoading: Bool {
+        guard case .loading = self else {
+            return false
+        }
+        
+        return true
     }
 }
 
