@@ -22,25 +22,11 @@ struct PlanetsView<ViewModel: PlanetsViewModelProtocol>: View {
                 EmptyView()
                 
             case .emptyList:
-                Text("There are no planets to display")
-                    .padding()
+                renderEmptyListView()
                 
             case .failedLoading(let errorMessage, let planets):
                 if (planets ?? []).isEmpty {
-                    VStack(alignment: .center, spacing: 24) {
-                        Text("Error: \(errorMessage)")
-                            .frame(maxWidth: .infinity, alignment: .center)
-                        
-                        Button(action: {
-                            viewModel.handle(.didTapTryAgain)
-                        }) {
-                            Text("Try again")
-                                .foregroundColor(.white)
-                                .padding()
-                                .background(Color.blue)
-                                .cornerRadius(10)
-                        }
-                    }
+                    renderFailedEmptyListView(errorMessage: errorMessage)
                 }
                 
             case .loading(let planets), .refreshing(let planets):
@@ -68,7 +54,31 @@ struct PlanetsView<ViewModel: PlanetsViewModelProtocol>: View {
 
 // MARK: - Private Functions
 
-extension PlanetsView {
+private extension PlanetsView {
+    @ViewBuilder
+    private func renderFailedEmptyListView(errorMessage: String) -> some View {
+        VStack(alignment: .center, spacing: 24) {
+            Text("Error: \(errorMessage)")
+                .frame(maxWidth: .infinity, alignment: .center)
+            
+            Button(action: {
+                viewModel.handle(.didTapTryAgain)
+            }) {
+                Text("Try again")
+                    .foregroundColor(.white)
+                    .padding()
+                    .background(Color.blue)
+                    .cornerRadius(10)
+            }
+        }
+    }
+    
+    @ViewBuilder
+    private func renderEmptyListView() -> some View {
+        Text("There are no planets to display")
+            .padding()
+    }
+    
     @ViewBuilder
     private func renderPlanetsList() -> some View {
         LazyVGrid(
