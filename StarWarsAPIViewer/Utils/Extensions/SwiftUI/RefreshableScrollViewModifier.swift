@@ -7,6 +7,7 @@
 
 import SwiftUI
 
+/// Source: https://dev.to/gualtierofr/pull-down-to-refresh-in-swiftui-4j26
 struct RefreshableScrollViewModifier: ViewModifier {
     let belowIOS15Action: () -> Void
     let fromIOS15Action: () async -> Void
