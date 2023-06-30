@@ -15,17 +15,6 @@ struct PlanetsView<ViewModel: PlanetsViewModelProtocol>: View {
     
     @Environment(\.horizontalSizeClass) var horizontalSizeClass
     
-    var gridItems: [SwiftUI.GridItem] {
-        if horizontalSizeClass == .regular {
-            return [
-                .init(.flexible(), alignment: .top),
-                .init(.flexible(), alignment: .top)
-            ]
-        } else {
-            return [.init(.flexible(), spacing: 0, alignment: .top)]
-        }
-    }
-    
     var body: some View {
         ZStack {
             Color(UIColor.systemGray6).ignoresSafeArea()
@@ -68,6 +57,17 @@ struct PlanetsView<ViewModel: PlanetsViewModelProtocol>: View {
 // MARK: - Private Functions
 
 private extension PlanetsView {
+    private var gridItems: [SwiftUI.GridItem] {
+        if horizontalSizeClass == .regular {
+            return [
+                .init(.flexible(), alignment: .top),
+                .init(.flexible(), alignment: .top)
+            ]
+        } else {
+            return [.init(.flexible(), spacing: 0, alignment: .top)]
+        }
+    }
+    
     @ViewBuilder
     private func renderFailedEmptyListView(errorMessage: String) -> some View {
         VStack(alignment: .center, spacing: 24) {
