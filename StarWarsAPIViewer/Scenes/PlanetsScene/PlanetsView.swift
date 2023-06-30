@@ -59,6 +59,16 @@ struct PlanetsView<ViewModel: PlanetsViewModelProtocol>: View {
         }
     }
     
+    // MARK: - Constructor
+    
+    init(viewModel: ViewModel) {
+        self.viewModel = viewModel
+    }
+}
+
+// MARK: - Private Functions
+
+extension PlanetsView {
     @ViewBuilder
     private func renderPlanetsList() -> some View {
         LazyVGrid(
@@ -94,7 +104,13 @@ struct PlanetsView<ViewModel: PlanetsViewModelProtocol>: View {
         )
         .modifier(
             RefreshableScrollViewModifier(
-                action: { viewModel.handle(.didTapRefresh) },
+                belowIOS15Action: {
+                    viewModel.handle(.didTapRefresh)
+                },
+                fromIOS15Action: {
+                    viewModel.handle(.didTapRefresh)
+                    await awaitWhileRefreshableIsTrue()
+                },
                 isRefreshing: .init(get: { viewModel.state.isRefreshing }, set: { _ in })
             )
         )
@@ -123,12 +139,16 @@ struct PlanetsView<ViewModel: PlanetsViewModelProtocol>: View {
         .frame(maxWidth: .infinity, alignment: .leading)
     }
     
-    // MARK: - Constructor
-    
-    init(viewModel: ViewModel) {
-        self.viewModel = viewModel
+    private func awaitWhileRefreshableIsTrue() async {
+        try? await Task.sleep(nanoseconds: 200_000)
+        
+        while viewModel.state.isRefreshing {
+            try? await Task.sleep(nanoseconds: 500_000)
+        }
     }
 }
+
+#if DEBUG
 
 struct PlanetsView_Previews: PreviewProvider {
     static var previews: some View {
@@ -143,3 +163,5 @@ struct PlanetsView_Previews: PreviewProvider {
         .navigationViewStyle(.stack)
     }
 }
+
+#endif
