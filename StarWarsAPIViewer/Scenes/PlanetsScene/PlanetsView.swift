@@ -104,14 +104,14 @@ extension PlanetsView {
         )
         .modifier(
             RefreshableScrollViewModifier(
-                belowIOS15Action: {
-                    viewModel.handle(.didTapRefresh)
-                },
+                belowIOS15Input: (
+                    action: { viewModel.handle(.didTapRefresh) },
+                    isRefreshing: .init(get: { viewModel.state.isRefreshing }, set: { _ in })
+                ),
                 fromIOS15Action: {
                     viewModel.handle(.didTapRefresh)
                     await awaitWhileRefreshableIsTrue()
-                },
-                isRefreshing: .init(get: { viewModel.state.isRefreshing }, set: { _ in })
+                }
             )
         )
     }

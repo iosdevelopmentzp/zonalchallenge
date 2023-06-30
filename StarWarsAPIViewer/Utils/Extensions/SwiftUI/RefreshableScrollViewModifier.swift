@@ -9,33 +9,34 @@ import SwiftUI
 
 /// Source: https://dev.to/gualtierofr/pull-down-to-refresh-in-swiftui-4j26
 struct RefreshableScrollViewModifier: ViewModifier {
-    let belowIOS15Action: () -> Void
+    let belowIOS15Input: (action: () -> Void, isRefreshing: Binding<Bool>)
     let fromIOS15Action: () async -> Void
-    let isRefreshing: Binding<Bool>
 
     func body(content: Content) -> some View {
-        RefreshableScrollView(isRefreshing: isRefreshing, belowIOS15Action: belowIOS15Action, fromIOS15Action: fromIOS15Action) {
+        RefreshableScrollView(belowIOS15Input: belowIOS15Input, fromIOS15Action: fromIOS15Action) {
             content
         }
     }
 }
 
 private struct RefreshableScrollView<Content: View>: View {
-    @Binding private var isRefreshing: Bool
     private let content: () -> Content
+    /* Below iOS 15 */
+    @Binding private var isRefreshing: Bool
     private let belowIOS15Action: () -> Void
+    /* iOS 15 and later */
     private let fromIOS15Action: () async -> Void
+    
     private let threshold:CGFloat = 50.0
     
     init(
-        isRefreshing: Binding<Bool>,
-        belowIOS15Action: @escaping () -> Void,
+        belowIOS15Input: (action: () -> Void, isRefreshing: Binding<Bool>),
         fromIOS15Action: @escaping () async -> Void,
         @ViewBuilder content: @escaping () -> Content
     ) {
-        self._isRefreshing = isRefreshing
         self.content = content
-        self.belowIOS15Action = belowIOS15Action
+        self._isRefreshing = belowIOS15Input.isRefreshing
+        self.belowIOS15Action = belowIOS15Input.action
         self.fromIOS15Action = fromIOS15Action
     }
     var body: some View {
@@ -57,8 +58,8 @@ private struct RefreshableScrollView<Content: View>: View {
                     }
                     
                     content()
-                        .anchorPreference(key: OffsetPreferenceKey.self, value: .top) {
-                            geometry[$0].y
+                        .anchorPreference(key: OffsetPreferenceKey.self, value: .top) { value -> CGFloat in
+                            geometry[value].y
                         }
                 }
                 .onPreferenceChange(OffsetPreferenceKey.self) { offset in
