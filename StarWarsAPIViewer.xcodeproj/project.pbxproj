@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3B1875D02A5214A7000B69BD /* View+onLoad.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B1875CF2A5214A7000B69BD /* View+onLoad.swift */; };
 		3B76DCC42A4EEAED00FACAA4 /* StarWarsUseCaseProtocolPreviewMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B76DCC32A4EEAED00FACAA4 /* StarWarsUseCaseProtocolPreviewMock.swift */; };
 		3B76DCC62A4F1ABD00FACAA4 /* RefreshableScrollViewModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B76DCC52A4F1ABD00FACAA4 /* RefreshableScrollViewModifier.swift */; };
 		3BCB22DE2A4DC15800ACD9AF /* NetworkingService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BCB22DD2A4DC15800ACD9AF /* NetworkingService.swift */; };
@@ -57,6 +58,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		3B1875CF2A5214A7000B69BD /* View+onLoad.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+onLoad.swift"; sourceTree = "<group>"; };
 		3B76DCC32A4EEAED00FACAA4 /* StarWarsUseCaseProtocolPreviewMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StarWarsUseCaseProtocolPreviewMock.swift; sourceTree = "<group>"; };
 		3B76DCC52A4F1ABD00FACAA4 /* RefreshableScrollViewModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RefreshableScrollViewModifier.swift; sourceTree = "<group>"; };
 		3BCB22DD2A4DC15800ACD9AF /* NetworkingService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkingService.swift; sourceTree = "<group>"; };
@@ -270,6 +272,7 @@
 			children = (
 				3BCB234F2A4E330900ACD9AF /* View+Navigation.swift */,
 				3B76DCC52A4F1ABD00FACAA4 /* RefreshableScrollViewModifier.swift */,
+				3B1875CF2A5214A7000B69BD /* View+onLoad.swift */,
 			);
 			path = SwiftUI;
 			sourceTree = "<group>";
@@ -498,6 +501,7 @@
 				7E29D89F26A71C61001034D1 /* PlanetsCollectionViewController.swift in Sources */,
 				7E29D8A426A72A2A001034D1 /* PlanetsSnapshotProvider.swift in Sources */,
 				3BCB23562A4E3C5500ACD9AF /* Result+Async.swift in Sources */,
+				3B1875D02A5214A7000B69BD /* View+onLoad.swift in Sources */,
 				7E29D8A226A71D78001034D1 /* PlanetDTO.swift in Sources */,
 				3BCB23092A4DFE4300ACD9AF /* PlanetsViewSceneDelegate.swift in Sources */,
 				3BCB23072A4DF68E00ACD9AF /* PlanetsPage.swift in Sources */,

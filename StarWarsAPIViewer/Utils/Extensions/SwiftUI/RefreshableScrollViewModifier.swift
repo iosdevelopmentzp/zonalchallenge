@@ -33,6 +33,22 @@ struct RefreshableScrollViewModifier<BottomContent: View>: ViewModifier {
     }
 }
 
+extension View {
+    func embeddedIntoRefreshableScrollView<BottomContent: View>(
+        belowIOS15Input: (action: () -> Void, isRefreshing: Binding<Bool>),
+        fromIOS15Action: @escaping () async -> Void,
+        @ViewBuilder bottomContent: @escaping () -> BottomContent
+    ) -> some View {
+        modifier(
+            RefreshableScrollViewModifier(
+                belowIOS15Input: belowIOS15Input,
+                fromIOS15Action: fromIOS15Action,
+                bottomContent: bottomContent
+            )
+        )
+    }
+}
+
 private struct RefreshableScrollView<Content: View, BottomContent: View>: View {
     private let content: () -> Content
     private let bottomContent: () -> BottomContent

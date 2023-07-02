@@ -42,7 +42,7 @@ struct PlanetsView<ViewModel: PlanetsViewModelProtocol>: View {
             }
         }
         .navigationTitle("Planets")
-        .onAppear {
+        .onLoad {
             viewModel.handle(.viewDidLoad)
         }
     }
@@ -116,23 +116,21 @@ private extension PlanetsView {
                 .cornerRadius(8)
                 .padding([.horizontal])
         )
-        .modifier(
-            RefreshableScrollViewModifier(
-                belowIOS15Input: (
-                    action: { viewModel.handle(.didTapRefresh) },
-                    isRefreshing: .init(get: { viewModel.state.isRefreshing }, set: { _ in })
-                ),
-                fromIOS15Action: {
-                    viewModel.handle(.didTapRefresh)
-                    await awaitWhileRefreshableIsTrue()
-                },
-                bottomContent: {
-                    if viewModel.state.isLoading {
-                        ProgressView()
-                            .frame(minHeight: 50)
-                    }
+        .embeddedIntoRefreshableScrollView(
+            belowIOS15Input: (
+                action: { viewModel.handle(.didTapRefresh) },
+                isRefreshing: .init(get: { viewModel.state.isRefreshing }, set: { _ in })
+            ),
+            fromIOS15Action: {
+                viewModel.handle(.didTapRefresh)
+                await awaitWhileRefreshableIsTrue()
+            },
+            bottomContent: {
+                if viewModel.state.isLoading {
+                    ProgressView()
+                        .frame(minHeight: 50)
                 }
-            )
+            }
         )
     }
     
