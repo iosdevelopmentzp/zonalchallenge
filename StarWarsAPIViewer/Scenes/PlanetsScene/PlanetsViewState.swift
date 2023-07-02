@@ -29,36 +29,37 @@ enum PlanetsViewState: Hashable {
 
 // MARK: - Factory
 
-extension PlanetsViewState {
-    /// A factory class for creating instances of `PlanetsViewState`.
-    struct Factory {
-        enum InputDataConditions {
-            case refreshing(planets: [PlanetItem]?)
-            case loading(planets: [PlanetItem]?)
-            case failedLoading(planets: [PlanetItem]?, error: Error)
-            case loaded(planets: [Planet])
-        }
-        
-        static func make(_ dataConditions: InputDataConditions) -> PlanetsViewState {
-            switch dataConditions {
-            case .refreshing(let planets):
-                return .refreshing(planets: planets)
+extension PlanetsViewModel {
+    enum Event {
+        case refreshing
+        case loading
+        case failedLoading(error: Error)
+        case loaded(planets: [Planet])
+    }
+    
+    struct Reducer {
+        static func reduce(state: PlanetsViewState, event: Event) -> PlanetsViewState {
+            switch event {
+            case .refreshing:
+                return .refreshing(planets: state.planets)
                 
-            case .loading(let planets):
-                return .loading(planets: planets)
+            case .loading:
+                return .loading(planets: state.planets)
                 
-            case .failedLoading(let planets, let error):
+            case .failedLoading(let error):
                 return .failedLoading(
                     errorMessage: error.localizedDescription,
-                    planets: planets
+                    planets: state.planets
                 )
                 
             case .loaded(let planets):
-                guard !planets.isEmpty else {
+                if planets.isEmpty && state.planets.isEmpty {
                     return .emptyList
+                } else if planets.isEmpty {
+                    return state
+                } else {
+                    return .loaded(planets: state.planets + planets.map(PlanetsViewState.PlanetItem.make(from:)))
                 }
-                
-                return .loaded(planets: planets.map(PlanetItem.make(from:)))
             }
         }
     }

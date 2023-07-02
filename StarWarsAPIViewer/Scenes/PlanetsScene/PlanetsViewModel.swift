@@ -103,13 +103,13 @@ final class PlanetsViewModel: ObservableObject, PlanetsViewModelProtocol {
             .sink(receiveValue: { [weak self] paginationState in
                 guard let self = self else { return }
                 if let error = paginationState.error {
-                    self.state = .Factory.make(.failedLoading(planets: self.state.planets, error: error))
+                    self.state = Self.Reducer.reduce(state: self.state, event: .failedLoading(error: error))
                 } else if paginationState.isLoading {
-                    self.state = .Factory.make(.loading(planets: self.state.planets))
+                    self.state = Self.Reducer.reduce(state: self.state, event: .loading)
                 } else if paginationState.isRefreshing {
-                    self.state = .Factory.make(.refreshing(planets: self.state.planets))
+                    self.state = Self.Reducer.reduce(state: self.state, event: .refreshing)
                 } else {
-                    self.state = .Factory.make(.loaded(planets: paginationState.elements))
+                    self.state = Self.Reducer.reduce(state: self.state, event: .loaded(planets: paginationState.elements))
                 }
             })
             .store(in: &self.cancellable)
