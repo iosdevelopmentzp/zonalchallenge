@@ -8,6 +8,10 @@
 
 /* Begin PBXBuildFile section */
 		3B1875D02A5214A7000B69BD /* View+onLoad.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B1875CF2A5214A7000B69BD /* View+onLoad.swift */; };
+		3B1875D32A521E0D000B69BD /* PlanetDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B1875D22A521E0D000B69BD /* PlanetDetailsView.swift */; };
+		3B1875D52A521E1E000B69BD /* PlanetDetailsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B1875D42A521E1E000B69BD /* PlanetDetailsViewModel.swift */; };
+		3B1875D72A521E2E000B69BD /* PlanetDetailsViewState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B1875D62A521E2E000B69BD /* PlanetDetailsViewState.swift */; };
+		3B1875D92A521E40000B69BD /* PlanetDetailsViewSceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B1875D82A521E40000B69BD /* PlanetDetailsViewSceneDelegate.swift */; };
 		3B76DCC42A4EEAED00FACAA4 /* StarWarsUseCaseProtocolPreviewMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B76DCC32A4EEAED00FACAA4 /* StarWarsUseCaseProtocolPreviewMock.swift */; };
 		3B76DCC62A4F1ABD00FACAA4 /* RefreshableScrollViewModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B76DCC52A4F1ABD00FACAA4 /* RefreshableScrollViewModifier.swift */; };
 		3BCB22DE2A4DC15800ACD9AF /* NetworkingService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BCB22DD2A4DC15800ACD9AF /* NetworkingService.swift */; };
@@ -59,6 +63,10 @@
 
 /* Begin PBXFileReference section */
 		3B1875CF2A5214A7000B69BD /* View+onLoad.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+onLoad.swift"; sourceTree = "<group>"; };
+		3B1875D22A521E0D000B69BD /* PlanetDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlanetDetailsView.swift; sourceTree = "<group>"; };
+		3B1875D42A521E1E000B69BD /* PlanetDetailsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlanetDetailsViewModel.swift; sourceTree = "<group>"; };
+		3B1875D62A521E2E000B69BD /* PlanetDetailsViewState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlanetDetailsViewState.swift; sourceTree = "<group>"; };
+		3B1875D82A521E40000B69BD /* PlanetDetailsViewSceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlanetDetailsViewSceneDelegate.swift; sourceTree = "<group>"; };
 		3B76DCC32A4EEAED00FACAA4 /* StarWarsUseCaseProtocolPreviewMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StarWarsUseCaseProtocolPreviewMock.swift; sourceTree = "<group>"; };
 		3B76DCC52A4F1ABD00FACAA4 /* RefreshableScrollViewModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RefreshableScrollViewModifier.swift; sourceTree = "<group>"; };
 		3BCB22DD2A4DC15800ACD9AF /* NetworkingService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkingService.swift; sourceTree = "<group>"; };
@@ -120,6 +128,17 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		3B1875D12A521DE5000B69BD /* PlanetDetailsScene */ = {
+			isa = PBXGroup;
+			children = (
+				3B1875D22A521E0D000B69BD /* PlanetDetailsView.swift */,
+				3B1875D42A521E1E000B69BD /* PlanetDetailsViewModel.swift */,
+				3B1875D62A521E2E000B69BD /* PlanetDetailsViewState.swift */,
+				3B1875D82A521E40000B69BD /* PlanetDetailsViewSceneDelegate.swift */,
+			);
+			path = PlanetDetailsScene;
+			sourceTree = "<group>";
+		};
 		3B76DCC22A4EEAD200FACAA4 /* SwiftPreviewMocks */ = {
 			isa = PBXGroup;
 			children = (
@@ -213,6 +232,7 @@
 			children = (
 				3BCB230A2A4DFF2A00ACD9AF /* StarWarsSpaceScene */,
 				3BCB22FB2A4DF50C00ACD9AF /* PlanetsScene */,
+				3B1875D12A521DE5000B69BD /* PlanetDetailsScene */,
 			);
 			path = Scenes;
 			sourceTree = "<group>";
@@ -495,6 +515,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				3BCB230C2A4DFFD600ACD9AF /* StarWarsSpaceView.swift in Sources */,
+				3B1875D72A521E2E000B69BD /* PlanetDetailsViewState.swift in Sources */,
 				7E29D86926A6FFF9001034D1 /* AppDelegate.swift in Sources */,
 				3BCB230E2A4DFFE900ACD9AF /* StarWarsSpaceViewModel.swift in Sources */,
 				3B76DCC42A4EEAED00FACAA4 /* StarWarsUseCaseProtocolPreviewMock.swift in Sources */,
@@ -507,6 +528,7 @@
 				3BCB23072A4DF68E00ACD9AF /* PlanetsPage.swift in Sources */,
 				3B76DCC62A4F1ABD00FACAA4 /* RefreshableScrollViewModifier.swift in Sources */,
 				3BCB23012A4DF53E00ACD9AF /* PlanetsViewState.swift in Sources */,
+				3B1875D32A521E0D000B69BD /* PlanetDetailsView.swift in Sources */,
 				3BCB23052A4DF68200ACD9AF /* Planet.swift in Sources */,
 				7E29D8B126A87ADF001034D1 /* SpaceView.swift in Sources */,
 				3BCB22DE2A4DC15800ACD9AF /* NetworkingService.swift in Sources */,
@@ -518,7 +540,9 @@
 				3BCB23102A4DFFFB00ACD9AF /* StarWarsSpaceViewSceneDelegate.swift in Sources */,
 				3BCB23532A4E38A300ACD9AF /* Pagination.swift in Sources */,
 				3BCB22E12A4DCBED00ACD9AF /* LoggingPlugin.swift in Sources */,
+				3B1875D92A521E40000B69BD /* PlanetDetailsViewSceneDelegate.swift in Sources */,
 				3BCB22F92A4DF4D700ACD9AF /* PlanetsCoordinatorObject.swift in Sources */,
+				3B1875D52A521E1E000B69BD /* PlanetDetailsViewModel.swift in Sources */,
 				3BCB22EE2A4DD5DB00ACD9AF /* StarWarsNetworkService.swift in Sources */,
 				7E29D92926A969D2001034D1 /* SpaceshipView.swift in Sources */,
 				3BCB22E82A4DD2BF00ACD9AF /* NetworkClientError.swift in Sources */,
