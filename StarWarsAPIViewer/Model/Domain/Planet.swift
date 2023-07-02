@@ -11,4 +11,8 @@ struct Planet: Equatable {
     let name: String
     let terrain: String
     let population: String
+    let climate: String?
+    let gravity: String?
+    let rotationPeriod: Int?
+    let orbitalPeriod: Int?
 }

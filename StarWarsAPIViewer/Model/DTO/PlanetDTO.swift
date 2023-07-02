@@ -11,4 +11,8 @@ struct PlanetDTO: Decodable, Hashable {
     let name: String
     let terrain: String
     let population: String
+    let climate: String?
+    let gravity: String?
+    let rotationPeriod: String?
+    let orbitalPeriod: String?
 }

@@ -39,7 +39,15 @@ final class StarWarsUseCase: StarWarsUseCaseProtocol {
 extension PlanetsPage {
     init(planetPage: PlanetsPageDTO) {
         self = .init(next: planetPage.next, planets: planetPage.planets.map {
-            Planet(name: $0.name, terrain: $0.terrain, population: $0.population)
+            Planet(
+                name: $0.name,
+                terrain: $0.terrain,
+                population: $0.population,
+                climate: $0.climate,
+                gravity: $0.gravity,
+                rotationPeriod: $0.rotationPeriod.flatMap { Int($0) },
+                orbitalPeriod: $0.orbitalPeriod.flatMap { Int($0) }
+            )
         })
     }
 }
