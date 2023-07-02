@@ -53,7 +53,7 @@ extension PlanetsViewModel {
                 )
                 
             case .loaded(let planets):
-                if planets.isEmpty && state.planets.isEmpty {
+                if planets.isEmpty, state.planets.isEmpty {
                     return .emptyList
                 } else if planets.isEmpty {
                     return state
