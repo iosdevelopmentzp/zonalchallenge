@@ -38,29 +38,35 @@ extension PlanetsViewModel {
     }
     
     struct Reducer {
-        static func reduce(state: PlanetsViewState, event: Event) -> PlanetsViewState {
+        static func reduce(state currentState: PlanetsViewState, event: Event) -> PlanetsViewState {
+            let newState: PlanetsViewState
+            
             switch event {
             case .refreshing:
-                return .refreshing(planets: state.planets)
+                newState = .refreshing(planets: currentState.planets)
                 
             case .loading:
-                return .loading(planets: state.planets)
+                newState = .loading(planets: currentState.planets)
                 
             case .failedLoading(let error):
-                return .failedLoading(
+                newState = .failedLoading(
                     errorMessage: error.localizedDescription,
-                    planets: state.planets
+                    planets: currentState.planets
                 )
                 
             case .loaded(let planets):
-                if planets.isEmpty, state.planets.isEmpty {
-                    return .emptyList
+                if planets.isEmpty, currentState.planets.isEmpty {
+                    newState = .emptyList
                 } else if planets.isEmpty {
-                    return state
+                    newState = .loaded(planets: currentState.planets)
+                } else if currentState.isRefreshing {
+                    newState = .loaded(planets: planets.map(PlanetsViewState.PlanetItem.make(from:)))
                 } else {
-                    return .loaded(planets: state.planets + planets.map(PlanetsViewState.PlanetItem.make(from:)))
+                    newState = .loaded(planets: currentState.planets + planets.map(PlanetsViewState.PlanetItem.make(from:)))
                 }
             }
+            
+            return newState
         }
     }
 }
