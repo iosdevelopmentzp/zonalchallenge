@@ -8,6 +8,7 @@
 import Foundation
 
 struct Planet: Equatable {
+    let url: String
     let name: String
     let terrain: String
     let population: String
@@ -15,4 +16,14 @@ struct Planet: Equatable {
     let gravity: String?
     let rotationPeriod: Int?
     let orbitalPeriod: Int?
+}
+
+extension Planet {
+    /// Expecting url such https://swapi.dev/api/planets/13/. So for this case id will be 13.
+    var id: Int? {
+        guard let lastComponent = URL(string: url)?.lastPathComponent else {
+            return nil
+        }
+        return Int(lastComponent)
+    }
 }

@@ -10,6 +10,7 @@ import SwiftUI
 /// Represents the different states of the PlanetsView
 enum PlanetsViewState: Hashable {
     struct PlanetItem: Hashable {
+        let id: Int?
         let name: String
         let population: String
     }
@@ -111,6 +112,7 @@ private extension PlanetsViewState.PlanetItem {
     /// Creates a `PlanetsViewState.Planet` instance from a given `Planet` object.
     static func make(from planet: Planet) -> PlanetsViewState.PlanetItem {
         .init(
+            id: planet.id,
             name: planet.name,
             population: "Population: \(planet.population)"
         )

@@ -9,5 +9,5 @@ import Foundation
 
 protocol PlanetsViewSceneDelegate: AnyObject {
     /// Notifies the delegate to open the details view for a specific planet.
-    func openDetails(for planet: String)
+    func openPlanetDetails(with planetId: Int)
 }

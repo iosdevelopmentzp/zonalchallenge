@@ -45,8 +45,9 @@ extension PlanetsCoordinatorObject: StarWarsSpaceViewSceneDelegate {
 // MARK: - PlanetsViewSceneDelegate
 
 extension PlanetsCoordinatorObject: PlanetsViewSceneDelegate {
-    func openDetails(for planet: String) {
+    func openPlanetDetails(with planetId: Int) {
         planetDetailsViewModel = PlanetDetailsViewModel(
+            planetId: planetId,
             useCase: StarWarsUseCase(
                 starWarsNetwork: StarWarsNetworkService(
                     client: SwapiClientService(

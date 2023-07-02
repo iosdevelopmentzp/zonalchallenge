@@ -8,6 +8,7 @@
 import Foundation
 
 struct PlanetDTO: Decodable, Hashable {
+    let url: String
     let name: String
     let terrain: String
     let population: String

@@ -50,6 +50,7 @@ extension PlanetsPage {
 extension Planet {
     init(planet: PlanetDTO) {
         self = Planet(
+            url: planet.url,
             name: planet.name,
             terrain: planet.terrain,
             population: planet.population,

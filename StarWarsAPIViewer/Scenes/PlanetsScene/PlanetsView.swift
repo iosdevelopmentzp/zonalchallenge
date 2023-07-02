@@ -123,7 +123,7 @@ private extension PlanetsView {
             ),
             fromIOS15Action: {
                 viewModel.handle(.didTapRefresh)
-                await awaitWhileRefreshableIsTrue()
+                await awaitWhileRefreshingIsTrue()
             },
             bottomContent: {
                 if viewModel.state.isLoading {
@@ -157,11 +157,11 @@ private extension PlanetsView {
         .frame(maxWidth: .infinity, alignment: .leading)
     }
     
-    private func awaitWhileRefreshableIsTrue() async {
-        try? await Task.sleep(nanoseconds: 200_000)
+    private func awaitWhileRefreshingIsTrue() async {
+        try? await Task.sleep(nanoseconds: 500_000_000)
         
         while viewModel.state.isRefreshing {
-            try? await Task.sleep(nanoseconds: 500_000)
+            try? await Task.sleep(nanoseconds: 500_000_000)
         }
     }
 }

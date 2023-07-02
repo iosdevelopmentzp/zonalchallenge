@@ -15,16 +15,63 @@ struct PlanetDetailsView<ViewModel: PlanetDetailsViewModelProtocol>: View {
     @ObservedObject private var viewModel: ViewModel
     
     var body: some View {
-        Color.purple.ignoresSafeArea(.all)
-            .onLoad {
-                viewModel.handle(.viewDidLoad)
+        ZStack {
+            if let item = viewModel.state.planetItem {
+                renderPlanetDetails(item)
             }
+            
+            if viewModel.state.isLoading {
+                ProgressView()
+            }
+        }
+        .navigationTitle("Details Title")
+        .onLoad {
+            viewModel.handle(.viewDidLoad)
+        }
     }
     
     // MARK: - Constructor
     
     init(viewModel: ViewModel) {
         self.viewModel = viewModel
+    }
+    
+    // MARK: - Private
+    
+    private func awaitWhileRefreshingIsTrue() async {
+        try? await Task.sleep(nanoseconds: 500_000_000)
+        
+        while viewModel.state.isRefreshing {
+            try? await Task.sleep(nanoseconds: 500_000_000)
+        }
+    }
+    
+    @ViewBuilder
+    private func renderPlanetDetails(_ item: PlanetDetailsViewState.PlanetItem) -> some View {
+        LazyVGrid(columns: [.init(.flexible(), spacing: 0, alignment: .top)], spacing: 0) {
+            Text(item.name)
+                .font(.system(size: 20))
+            
+            ForEach(item.parameters.indices, id: \.self) {
+                let localized = item.parameters[$0].localized
+                HStack(spacing: 16) {
+                    Text(localized.title)
+                    Spacer()
+                    Text(localized.value)
+                }
+            }
+        }
+        .embeddedIntoRefreshableScrollView(
+            belowIOS15Input: (
+                action: { viewModel.handle(.didTapRefresh) },
+                isRefreshing: .init(get: { viewModel.state.isRefreshing }, set: { _ in })
+            ),
+            fromIOS15Action: {
+                viewModel.handle(.didTapRefresh)
+                await awaitWhileRefreshingIsTrue()
+            },
+            bottomContent: { EmptyView() }
+        )
     }
 }
 
@@ -35,6 +82,7 @@ struct PlanetDetailsView_Previews: PreviewProvider {
         NavigationView {
             PlanetDetailsView(
                 viewModel: PlanetDetailsViewModel(
+                    planetId: 0,
                     useCase: StarWarsUseCaseProtocolPreviewMock(),
                     sceneDelegate: nil
                 )

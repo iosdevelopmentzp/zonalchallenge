@@ -91,7 +91,11 @@ final class PlanetsViewModel: ObservableObject, PlanetsViewModelProtocol {
             pagination.loadNext()
             
         case .didTapItem(let planetItem):
-            sceneDelegate?.openDetails(for: planetItem.name)
+            guard let id = planetItem.id else {
+                /* No id */
+                return
+            }
+            sceneDelegate?.openPlanetDetails(with: id)
         }
     }
     
