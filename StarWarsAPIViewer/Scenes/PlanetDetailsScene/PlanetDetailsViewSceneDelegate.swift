@@ -8,5 +8,5 @@
 import Foundation
 
 protocol PlanetDetailsViewSceneDelegate: AnyObject {
-    // TODO: Implement PlanetDetailsView Scene Delegate
+    /* Implement PlanetDetailsView Scene Delegate */
 }

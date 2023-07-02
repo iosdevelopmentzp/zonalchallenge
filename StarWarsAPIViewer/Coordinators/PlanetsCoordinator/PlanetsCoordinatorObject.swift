@@ -11,8 +11,9 @@ import SwiftUI
 final class PlanetsCoordinatorObject: ObservableObject {
     // MARK: - Properties
     
-    @Published var planetsViewModel: PlanetsViewModel?
     @Published var spaceViewModel: StarWarsSpaceViewModel?
+    @Published var planetsViewModel: PlanetsViewModel?
+    @Published var planetDetailsViewModel: PlanetDetailsViewModel?
     
     // MARK: - Start
     
@@ -45,6 +46,24 @@ extension PlanetsCoordinatorObject: StarWarsSpaceViewSceneDelegate {
 
 extension PlanetsCoordinatorObject: PlanetsViewSceneDelegate {
     func openDetails(for planet: String) {
-        // TODO: - Open details
+        planetDetailsViewModel = PlanetDetailsViewModel(
+            useCase: StarWarsUseCase(
+                starWarsNetwork: StarWarsNetworkService(
+                    client: SwapiClientService(
+                        networking: NetworkingService(
+                            plugins: [LoggingPlugin()]
+                        ),
+                        baseURL: "https://swapi.dev/"
+                    )
+                )
+            ),
+            sceneDelegate: self
+        )
     }
+}
+
+// MARK: - PlanetDetailsViewSceneDelegate
+
+extension PlanetsCoordinatorObject: PlanetDetailsViewSceneDelegate {
+    /* Protocol implementation */
 }

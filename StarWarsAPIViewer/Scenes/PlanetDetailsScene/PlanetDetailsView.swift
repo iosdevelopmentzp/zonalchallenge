@@ -15,7 +15,7 @@ struct PlanetDetailsView<ViewModel: PlanetDetailsViewModelProtocol>: View {
     @ObservedObject private var viewModel: ViewModel
     
     var body: some View {
-        EmptyView()
+        Color.purple.ignoresSafeArea(.all)
             .onLoad {
                 viewModel.handle(.viewDidLoad)
             }
