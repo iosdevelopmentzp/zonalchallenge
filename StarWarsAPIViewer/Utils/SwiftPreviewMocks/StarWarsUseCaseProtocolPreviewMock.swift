@@ -19,6 +19,11 @@ struct StarWarsUseCaseProtocolPreviewMock: StarWarsUseCaseProtocol {
         let dto = try SwapiDecoder().decode(PlanetsPageDTO.self, from: Self.secondPageJSON.data(using: .utf8)!)
         return PlanetsPage(planetPage: dto)
     }
+    
+    func planetDetails(id: Int) async throws -> Planet {
+        let dto = try SwapiDecoder().decode(PlanetDTO.self, from: Self.planetDetailsJSON.data(using: .utf8)!)
+        return Planet(planet: dto)
+    }
 }
 
 private extension StarWarsUseCaseProtocolPreviewMock {
@@ -481,6 +486,34 @@ private extension StarWarsUseCaseProtocolPreviewMock {
           ],
           "count" : 60,
           "next" : null
+        }
+        """
+    }
+    
+    static var planetDetailsJSON: String {
+        """
+        {
+          "population" : "2000000000",
+          "terrain" : "grasslands, mountains",
+          "edited" : "2014-12-20T20:58:18.420000Z",
+          "diameter" : "12500",
+          "residents" : [
+            "https://swapi.dev/api/people/5/",
+            "https://swapi.dev/api/people/68/",
+            "https://swapi.dev/api/people/81/"
+          ],
+          "orbital_period" : "364",
+          "surface_water" : "40",
+          "rotation_period" : "24",
+          "gravity" : "1 standard",
+          "films" : [
+            "https://swapi.dev/api/films/1/",
+            "https://swapi.dev/api/films/6/"
+          ],
+          "url" : "https://swapi.dev/api/planets/2/",
+          "created" : "2014-12-10T11:35:48.479000Z",
+          "climate" : "temperate",
+          "name" : "Alderaan"
         }
         """
     }

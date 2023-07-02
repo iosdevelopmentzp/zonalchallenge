@@ -10,6 +10,7 @@ import Foundation
 protocol StarWarsUseCaseProtocol {
     func planetsFirstPage() async throws -> PlanetsPage
     func planetsNextPage(url: String) async throws -> PlanetsPage
+    func planetDetails(id: Int) async throws -> Planet
 }
 
 final class StarWarsUseCase: StarWarsUseCaseProtocol {
@@ -32,22 +33,30 @@ final class StarWarsUseCase: StarWarsUseCaseProtocol {
     func planetsNextPage(url: String) async throws -> PlanetsPage {
         .init(planetPage: try await starWarsNetwork.loadPlanetsNextPage(url: url))
     }
+    
+    func planetDetails(id: Int) async throws -> Planet {
+        .init(planet: try await starWarsNetwork.loadPlanetDetails(id: id))
+    }
 }
 
 // MARK: - PlanetsPage Constructor
 
 extension PlanetsPage {
     init(planetPage: PlanetsPageDTO) {
-        self = .init(next: planetPage.next, planets: planetPage.planets.map {
-            Planet(
-                name: $0.name,
-                terrain: $0.terrain,
-                population: $0.population,
-                climate: $0.climate,
-                gravity: $0.gravity,
-                rotationPeriod: $0.rotationPeriod.flatMap { Int($0) },
-                orbitalPeriod: $0.orbitalPeriod.flatMap { Int($0) }
-            )
-        })
+        self = .init(next: planetPage.next, planets: planetPage.planets.map(Planet.init(planet:)))
+    }
+}
+
+extension Planet {
+    init(planet: PlanetDTO) {
+        self = Planet(
+            name: planet.name,
+            terrain: planet.terrain,
+            population: planet.population,
+            climate: planet.climate,
+            gravity: planet.gravity,
+            rotationPeriod: planet.rotationPeriod.flatMap { Int($0) },
+            orbitalPeriod: planet.orbitalPeriod.flatMap { Int($0) }
+        )
     }
 }

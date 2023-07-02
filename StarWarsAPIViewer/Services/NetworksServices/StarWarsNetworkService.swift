@@ -10,6 +10,7 @@ import Foundation
 protocol StarWarsNetworkServiceProtocol {
     func loadPlanetsFirstPage() async throws -> PlanetsPageDTO
     func loadPlanetsNextPage(url: String) async throws -> PlanetsPageDTO
+    func loadPlanetDetails(id: Int) async throws -> PlanetDTO
 }
 
 /// A network service for loading planet data.
@@ -20,6 +21,7 @@ final class StarWarsNetworkService: StarWarsNetworkServiceProtocol {
     private enum API {
         case planetsFirstPage
         case nextPage(url: String)
+        case planetDetails(id: Int)
 
         var path: String {
             switch self {
@@ -38,6 +40,9 @@ final class StarWarsNetworkService: StarWarsNetworkServiceProtocol {
                     path = String(path.dropFirst())
                 }
                 return path
+                
+            case .planetDetails(let id):
+                return "api/planets/\(id)"
             }
         }
     }
@@ -46,6 +51,7 @@ final class StarWarsNetworkService: StarWarsNetworkServiceProtocol {
     private enum APIEndpoint<T> {
         case planetsFirstPage
         case planetsNextPage(url: String)
+        case planetDetails(id: Int)
         
         /// The corresponding `Endpoint` for the endpoint.
         var endpoint: Endpoint<T> {
@@ -59,6 +65,12 @@ final class StarWarsNetworkService: StarWarsNetworkServiceProtocol {
             case .planetsNextPage(let url):
                 return .init(
                     path: API.nextPage(url: url).path,
+                    httpMethod: .GET
+                )
+                
+            case .planetDetails(let id):
+                return .init(
+                    path: API.planetDetails(id: id).path,
                     httpMethod: .GET
                 )
             }
@@ -89,5 +101,9 @@ final class StarWarsNetworkService: StarWarsNetworkServiceProtocol {
     /// - Returns: A `PlanetsPageDTO` object representing the loaded planet data.
     func loadPlanetsNextPage(url: String) async throws -> PlanetsPageDTO {
         try await client.request(APIEndpoint<PlanetsPageDTO>.planetsNextPage(url: url).endpoint)
+    }
+    
+    func loadPlanetDetails(id: Int) async throws -> PlanetDTO {
+        try await client.request(APIEndpoint<PlanetDTO>.planetDetails(id: id).endpoint)
     }
 }
