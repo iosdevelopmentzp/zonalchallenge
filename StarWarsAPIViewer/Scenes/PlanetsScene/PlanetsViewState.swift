@@ -32,6 +32,7 @@ enum PlanetsViewState: Hashable {
 
 extension PlanetsViewModel {
     enum Event {
+        case idle
         case refreshing
         case loading
         case failedLoading(error: Error)
@@ -43,6 +44,9 @@ extension PlanetsViewModel {
             let newState: PlanetsViewState
             
             switch event {
+            case .idle:
+                newState = .idle
+                
             case .refreshing:
                 newState = .refreshing(planets: currentState.planets)
                 
@@ -60,10 +64,8 @@ extension PlanetsViewModel {
                     newState = .emptyList
                 } else if planets.isEmpty {
                     newState = .loaded(planets: currentState.planets)
-                } else if currentState.isRefreshing {
-                    newState = .loaded(planets: planets.map(PlanetsViewState.PlanetItem.make(from:)))
                 } else {
-                    newState = .loaded(planets: currentState.planets + planets.map(PlanetsViewState.PlanetItem.make(from:)))
+                    newState = .loaded(planets: planets.map(PlanetsViewState.PlanetItem.make(from:)))
                 }
             }
             
@@ -102,6 +104,34 @@ extension PlanetsViewState {
             return false
         }
         
+        return true
+    }
+    
+    var isIdle: Bool {
+        guard case .idle = self else {
+            return false
+        }
+        return true
+    }
+
+    var isEmptyList: Bool {
+        guard case .emptyList = self else {
+            return false
+        }
+        return true
+    }
+
+    var isFailedLoading: Bool {
+        guard case .failedLoading = self else {
+            return false
+        }
+        return true
+    }
+
+    var isLoaded: Bool {
+        guard case .loaded = self else {
+            return false
+        }
         return true
     }
 }

@@ -24,8 +24,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     lazy var mainCoordinator = MainCoordinatorObject(resolver: resolver)
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
+        guard NSClassFromString("XCTest") == nil else {
+            return true
+        }
+        
         resolver.setupDependencies()
         mainCoordinator.start()
+        
         return true
     }
 }

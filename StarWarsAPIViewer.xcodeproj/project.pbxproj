@@ -42,6 +42,12 @@
 		3BCB23562A4E3C5500ACD9AF /* Result+Async.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BCB23552A4E3C5500ACD9AF /* Result+Async.swift */; };
 		3BCB23592A4E3D4B00ACD9AF /* StarWarsUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BCB23582A4E3D4B00ACD9AF /* StarWarsUseCase.swift */; };
 		3BF44BCA2A53062D001876EC /* ZNLSWAPIClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BF44BC92A53062D001876EC /* ZNLSWAPIClient.m */; };
+		3BF44BCE2A5306FB001876EC /* PlanetsViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BF44BCD2A5306FB001876EC /* PlanetsViewModelTests.swift */; };
+		3BF44BD12A530780001876EC /* StarWarsUseCaseProtocolMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BF44BD02A530780001876EC /* StarWarsUseCaseProtocolMock.swift */; };
+		3BF44BD42A530918001876EC /* PlanetsViewSceneDelegateMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BF44BD32A530918001876EC /* PlanetsViewSceneDelegateMock.swift */; };
+		3BF44BD72A531045001876EC /* Planet+Fixture.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BF44BD62A531045001876EC /* Planet+Fixture.swift */; };
+		3BF44BD92A531073001876EC /* PlanetsPage+Fixture.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BF44BD82A531073001876EC /* PlanetsPage+Fixture.swift */; };
+		3BF44BDC2A531732001876EC /* MockedError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BF44BDB2A531732001876EC /* MockedError.swift */; };
 		7E29D86926A6FFF9001034D1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E29D86826A6FFF9001034D1 /* AppDelegate.swift */; };
 		7E29D87026A6FFF9001034D1 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7E29D86E26A6FFF9001034D1 /* Main.storyboard */; };
 		7E29D87226A6FFFC001034D1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7E29D87126A6FFFC001034D1 /* Assets.xcassets */; };
@@ -102,6 +108,12 @@
 		3BCB23582A4E3D4B00ACD9AF /* StarWarsUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StarWarsUseCase.swift; sourceTree = "<group>"; };
 		3BF44BC82A53062D001876EC /* ZNLSWAPIClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZNLSWAPIClient.h; sourceTree = "<group>"; };
 		3BF44BC92A53062D001876EC /* ZNLSWAPIClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZNLSWAPIClient.m; sourceTree = "<group>"; };
+		3BF44BCD2A5306FB001876EC /* PlanetsViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlanetsViewModelTests.swift; sourceTree = "<group>"; };
+		3BF44BD02A530780001876EC /* StarWarsUseCaseProtocolMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StarWarsUseCaseProtocolMock.swift; sourceTree = "<group>"; };
+		3BF44BD32A530918001876EC /* PlanetsViewSceneDelegateMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlanetsViewSceneDelegateMock.swift; sourceTree = "<group>"; };
+		3BF44BD62A531045001876EC /* Planet+Fixture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Planet+Fixture.swift"; sourceTree = "<group>"; };
+		3BF44BD82A531073001876EC /* PlanetsPage+Fixture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PlanetsPage+Fixture.swift"; sourceTree = "<group>"; };
+		3BF44BDB2A531732001876EC /* MockedError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockedError.swift; sourceTree = "<group>"; };
 		7E29D86526A6FFF9001034D1 /* StarWarsAPIViewer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = StarWarsAPIViewer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7E29D86826A6FFF9001034D1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		7E29D86F26A6FFF9001034D1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -392,6 +404,59 @@
 			path = "API Client";
 			sourceTree = "<group>";
 		};
+		3BF44BCB2A5306CE001876EC /* Scenes */ = {
+			isa = PBXGroup;
+			children = (
+				3BF44BCF2A530764001876EC /* Helpers */,
+				3BF44BCC2A5306DC001876EC /* PlanetsScene */,
+			);
+			path = Scenes;
+			sourceTree = "<group>";
+		};
+		3BF44BCC2A5306DC001876EC /* PlanetsScene */ = {
+			isa = PBXGroup;
+			children = (
+				3BF44BCD2A5306FB001876EC /* PlanetsViewModelTests.swift */,
+			);
+			path = PlanetsScene;
+			sourceTree = "<group>";
+		};
+		3BF44BCF2A530764001876EC /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				3BF44BDA2A531724001876EC /* Extensions */,
+				3BF44BD52A530F7F001876EC /* Fixture */,
+				3BF44BD22A5307B4001876EC /* Mock */,
+			);
+			path = Helpers;
+			sourceTree = "<group>";
+		};
+		3BF44BD22A5307B4001876EC /* Mock */ = {
+			isa = PBXGroup;
+			children = (
+				3BF44BD02A530780001876EC /* StarWarsUseCaseProtocolMock.swift */,
+				3BF44BD32A530918001876EC /* PlanetsViewSceneDelegateMock.swift */,
+			);
+			path = Mock;
+			sourceTree = "<group>";
+		};
+		3BF44BD52A530F7F001876EC /* Fixture */ = {
+			isa = PBXGroup;
+			children = (
+				3BF44BD62A531045001876EC /* Planet+Fixture.swift */,
+				3BF44BD82A531073001876EC /* PlanetsPage+Fixture.swift */,
+			);
+			path = Fixture;
+			sourceTree = "<group>";
+		};
+		3BF44BDA2A531724001876EC /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				3BF44BDB2A531732001876EC /* MockedError.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
 		7E29D85C26A6FFF9001034D1 = {
 			isa = PBXGroup;
 			children = (
@@ -434,6 +499,7 @@
 		7E29D87E26A6FFFC001034D1 /* StarWarsAPIViewerTests */ = {
 			isa = PBXGroup;
 			children = (
+				3BF44BCB2A5306CE001876EC /* Scenes */,
 				7E29D88126A6FFFC001034D1 /* Info.plist */,
 				7E29D8AB26A85C6E001034D1 /* ZNLSWAPIClientTests.swift */,
 			);
@@ -627,6 +693,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3BF44BD12A530780001876EC /* StarWarsUseCaseProtocolMock.swift in Sources */,
+				3BF44BCE2A5306FB001876EC /* PlanetsViewModelTests.swift in Sources */,
+				3BF44BD42A530918001876EC /* PlanetsViewSceneDelegateMock.swift in Sources */,
+				3BF44BD72A531045001876EC /* Planet+Fixture.swift in Sources */,
+				3BF44BD92A531073001876EC /* PlanetsPage+Fixture.swift in Sources */,
+				3BF44BDC2A531732001876EC /* MockedError.swift in Sources */,
 				7E29D8AC26A85C6E001034D1 /* ZNLSWAPIClientTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

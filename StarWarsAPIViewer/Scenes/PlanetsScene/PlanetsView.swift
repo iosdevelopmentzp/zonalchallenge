@@ -83,7 +83,9 @@ private extension PlanetsView {
                 let item = viewModel.state.planets[index]
                 makeCell(item: item, divider: item != viewModel.state.planets.last)
                     .onTapGesture {
-                        viewModel.handle(.didTapItem(item))
+                        item.id.map {
+                            viewModel.handle(.didTapItem(id: $0))
+                        }
                     }
             }
             

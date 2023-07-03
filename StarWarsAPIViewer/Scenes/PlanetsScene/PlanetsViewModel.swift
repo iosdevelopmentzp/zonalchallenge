@@ -20,7 +20,7 @@ enum PlanetsViewEvent {
     case didTapRefresh
     case didTapTryAgain
     case didReachBottom
-    case didTapItem(PlanetsViewState.PlanetItem)
+    case didTapItem(id: Int)
 }
 
 @MainActor
@@ -90,11 +90,7 @@ final class PlanetsViewModel: ObservableObject, PlanetsViewModelProtocol {
         case .didReachBottom:
             pagination.loadNext()
             
-        case .didTapItem(let planetItem):
-            guard let id = planetItem.id else {
-                /* No id */
-                return
-            }
+        case .didTapItem(let id):
             sceneDelegate?.openPlanetDetails(with: id)
         }
     }
@@ -106,14 +102,17 @@ final class PlanetsViewModel: ObservableObject, PlanetsViewModelProtocol {
             .receive(on: DispatchQueue.main)
             .sink(receiveValue: { [weak self] paginationState in
                 guard let self = self else { return }
+                
                 if let error = paginationState.error {
                     self.state = Self.Reducer.reduce(state: self.state, event: .failedLoading(error: error))
                 } else if paginationState.isLoading {
                     self.state = Self.Reducer.reduce(state: self.state, event: .loading)
                 } else if paginationState.isRefreshing {
                     self.state = Self.Reducer.reduce(state: self.state, event: .refreshing)
+                } else if let elements = paginationState.elements {
+                    self.state = Self.Reducer.reduce(state: self.state, event: .loaded(planets: elements))
                 } else {
-                    self.state = Self.Reducer.reduce(state: self.state, event: .loaded(planets: paginationState.elements))
+                    self.state = Self.Reducer.reduce(state: self.state, event: .idle)
                 }
             })
             .store(in: &self.cancellable)

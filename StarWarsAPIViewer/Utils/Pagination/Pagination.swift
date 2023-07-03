@@ -17,9 +17,9 @@ final class Pagination<PageDependency: PaginationDependency, Element> {
         let isRefreshing: Bool
         let isLoading: Bool
         let error: Error?
-        let elements: [Element]
+        let elements: [Element]?
         
-        init(isRefreshing: Bool = false, isLoading: Bool = false, error: Error? = nil, elements: [Element] = []) {
+        init(isRefreshing: Bool = false, isLoading: Bool = false, error: Error? = nil, elements: [Element]? = nil) {
             self.isRefreshing = isRefreshing
             self.isLoading = isLoading
             self.error = error
@@ -92,7 +92,7 @@ final class Pagination<PageDependency: PaginationDependency, Element> {
             switch result {
             case .success(let pageDependency):
                 self.nextDependency = pageDependency.nextDependency
-                self.pageState = .init(elements: self.pageState.elements + pageDependency.elements)
+                self.pageState = .init(elements: (self.pageState.elements ?? []) + pageDependency.elements)
                 
             case .failure(let error):
                 self.pageState = .init(error: error, elements: self.pageState.elements)
