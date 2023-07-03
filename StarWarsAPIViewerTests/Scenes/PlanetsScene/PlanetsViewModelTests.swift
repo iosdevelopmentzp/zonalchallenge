@@ -142,6 +142,26 @@ final class PlanetsViewModelTests: XCTestCase {
         XCTAssertEqual(starWarsUseCase.planetsNextPageCallsCount, 1)
     }
     
+    func test_state_successfulFirstPageWithEmptyPlanets_correctStateScenario() {
+        starWarsUseCase.planetsFirstPageCompletionClosure = {
+            .fixture()
+        }
+       
+        let sut = makeSUT()
+        
+        let states = waitStatusUpdates(expectedCount: 3, sut: sut) {
+            sut.handle(.viewDidLoad)
+        }
+        
+        XCTAssertTrue(states.count == 3)
+        XCTAssertTrue(states[0].isIdle)
+        XCTAssertTrue(states[1].isRefreshing)
+        XCTAssertTrue(states[2].isEmptyList)
+        XCTAssertTrue(sut.state.isEmptyList)
+        XCTAssertEqual(sut.state.planets.count, 0)
+        XCTAssertEqual(starWarsUseCase.planetsFirstPageCallsCount, 1)
+    }
+    
     func test_delegateCall_didTapItem_delegateMethodHasBeenCalled() {
         mockFirstPageResponse(isError: false)
         let sut = makeSUT()

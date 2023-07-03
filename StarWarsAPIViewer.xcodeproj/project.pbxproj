@@ -457,6 +457,14 @@
 			path = Extensions;
 			sourceTree = "<group>";
 		};
+		3BF44BDD2A531FD7001876EC /* Legacy */ = {
+			isa = PBXGroup;
+			children = (
+				7E29D8AB26A85C6E001034D1 /* ZNLSWAPIClientTests.swift */,
+			);
+			path = Legacy;
+			sourceTree = "<group>";
+		};
 		7E29D85C26A6FFF9001034D1 = {
 			isa = PBXGroup;
 			children = (
@@ -499,9 +507,9 @@
 		7E29D87E26A6FFFC001034D1 /* StarWarsAPIViewerTests */ = {
 			isa = PBXGroup;
 			children = (
+				3BF44BDD2A531FD7001876EC /* Legacy */,
 				3BF44BCB2A5306CE001876EC /* Scenes */,
 				7E29D88126A6FFFC001034D1 /* Info.plist */,
-				7E29D8AB26A85C6E001034D1 /* ZNLSWAPIClientTests.swift */,
 			);
 			path = StarWarsAPIViewerTests;
 			sourceTree = "<group>";
