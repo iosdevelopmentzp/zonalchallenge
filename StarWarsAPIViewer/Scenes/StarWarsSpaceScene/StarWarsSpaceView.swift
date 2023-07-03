@@ -46,7 +46,13 @@ private struct StarWarsSpaceViewWrapper: UIViewControllerRepresentable {
 // MARK: - StarWarsSpaceViewController
 
 private final class StarWarsSpaceViewController: UIViewController {
+    @IBOutlet private weak var browsePlanetsButton: UIButton!
     var onButtonTap: (() -> Void)?
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        browsePlanetsButton.accessibilityIdentifier = "browsePlanetsButton"
+    }
     
     @IBAction
     private func onButtonTap(sender: UIButton) {

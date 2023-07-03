@@ -30,13 +30,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
         
         if UITestsHelper.isUITesting {
-            #if DEBUG
             resolver.setupUITestsDependencies()
-            #endif
         } else {
             resolver.setupDependencies()
         }
-        
         
         mainCoordinator.start()
         

@@ -10,9 +10,9 @@ import Foundation
 #if DEBUG
 
 final class StarWarsUseCaseProtocolUITestsMock: StarWarsUseCaseProtocol {
-    private var isPlanetsFirstPageSuccessful = true
-    private var isPlanetsNextPageSuccessful = true
-    private var isPlanetsDetailsSuccessful = true
+    private var isPlanetsFirstPageSuccessful: () -> Bool = { true }
+    private var isPlanetsNextPageSuccessful: () -> Bool = { true }
+    private var isPlanetsDetailsSuccessful: () -> Bool = { true }
     
     private var planetsFirstPageResponse = StarWarsUseCaseProtocolUITestsMock.firstPageResponse
     private var planetsNextPageResponse = StarWarsUseCaseProtocolUITestsMock.nextPageResponse
@@ -25,7 +25,7 @@ final class StarWarsUseCaseProtocolUITestsMock: StarWarsUseCaseProtocol {
             try? await Task.sleep(nanoseconds: requestDelay)
         }
         
-        if isPlanetsFirstPageSuccessful {
+        if isPlanetsFirstPageSuccessful() {
             return planetsFirstPageResponse
         } else {
             throw MockedError.generic
@@ -37,7 +37,7 @@ final class StarWarsUseCaseProtocolUITestsMock: StarWarsUseCaseProtocol {
             try? await Task.sleep(nanoseconds: requestDelay)
         }
         
-        if isPlanetsNextPageSuccessful {
+        if isPlanetsNextPageSuccessful() {
             return planetsNextPageResponse
         } else {
             throw MockedError.generic
@@ -49,7 +49,7 @@ final class StarWarsUseCaseProtocolUITestsMock: StarWarsUseCaseProtocol {
             try? await Task.sleep(nanoseconds: requestDelay)
         }
         
-        guard isPlanetsDetailsSuccessful else {
+        guard isPlanetsDetailsSuccessful() else {
             throw MockedError.generic
         }
         
@@ -69,7 +69,7 @@ final class StarWarsUseCaseProtocolUITestsMock: StarWarsUseCaseProtocol {
     // MARK: - Configurations
     
     @discardableResult
-    func setIsPlanetsFirstPageSuccessful(_ isSuccessful: Bool) -> Self {
+    func setIsPlanetsFirstPageSuccessful(_ isSuccessful: @autoclosure @escaping () ->  Bool) -> Self {
         self.isPlanetsFirstPageSuccessful = isSuccessful
         return self
     }
@@ -81,13 +81,13 @@ final class StarWarsUseCaseProtocolUITestsMock: StarWarsUseCaseProtocol {
     }
     
     @discardableResult
-    func setIsPlanetsNextPageSuccessful(_ isSuccessful: Bool) -> Self {
+    func setIsPlanetsNextPageSuccessful(_ isSuccessful: @autoclosure @escaping () ->  Bool) -> Self {
         self.isPlanetsNextPageSuccessful = isSuccessful
         return self
     }
     
     @discardableResult
-    func setIsPlanetsDetailsSuccessful(_ isSuccessful: Bool) -> Self {
+    func setIsPlanetsDetailsSuccessful(_ isSuccessful: @autoclosure @escaping () ->  Bool) -> Self {
         self.isPlanetsDetailsSuccessful = isSuccessful
         return self
     }

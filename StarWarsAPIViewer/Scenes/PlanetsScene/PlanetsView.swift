@@ -81,7 +81,7 @@ private extension PlanetsView {
         LazyVGrid(columns: gridItems, spacing: 0) {
             ForEach(viewModel.state.planets.indices, id: \.self) { index in
                 let item = viewModel.state.planets[index]
-                makeCell(item: item, divider: item != viewModel.state.planets.last)
+                makeCell(item: item, divider: item != viewModel.state.planets.last, index: index)
                     .onTapGesture {
                         item.id.map {
                             viewModel.handle(.didTapItem(id: $0))
@@ -121,17 +121,19 @@ private extension PlanetsView {
     }
     
     @ViewBuilder
-    private func makeCell(item: PlanetsViewState.PlanetItem, divider: Bool) -> some View {
+    private func makeCell(item: PlanetsViewState.PlanetItem, divider: Bool, index: Int) -> some View {
         VStack(alignment: .leading, spacing: 0) {
             Text(item.name)
                 .padding([.horizontal])
                 .padding([.top], 8)
                 .font(.system(size: 20))
+                .accessibilityIdentifier("cellNameLabel_\(index)")
             
             Text(item.population)
                 .padding([.bottom], 8)
                 .padding([.horizontal])
                 .font(.system(size: 12))
+                .accessibilityIdentifier("cellPopulationLabel_\(index)")
             
             if divider {
                 Rectangle()

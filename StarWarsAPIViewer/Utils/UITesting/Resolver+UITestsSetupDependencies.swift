@@ -13,6 +13,9 @@ extension ResolverType {
     func setupUITestsDependencies() {
         self.register(type: StarWarsUseCaseProtocol.self, strategy: .alwaysNewInstance) { _ in
             StarWarsUseCaseProtocolUITestsMock()
+                .setIsPlanetsFirstPageSuccessful(UITestsHelper.isPlanetsFirstPageRequestSuccessful)
+                .setIsPlanetsNextPageSuccessful(UITestsHelper.isPlanetsNextPageRequestSuccessful)
+                .setIsPlanetsDetailsSuccessful(UITestsHelper.isPlanetDetailsRequestSuccessful)
         }
     }
 }

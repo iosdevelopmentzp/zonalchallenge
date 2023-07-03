@@ -11,6 +11,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="StarWarsSpaceViewController" customModule="StarWarsAPIViewer" customModuleProvider="target">
             <connections>
+                <outlet property="browsePlanetsButton" destination="wz6-XZ-1pB" id="BZh-cr-L1Q"/>
                 <outlet property="view" destination="iN0-l3-epB" id="qCL-NL-5Hw"/>
             </connections>
         </placeholder>

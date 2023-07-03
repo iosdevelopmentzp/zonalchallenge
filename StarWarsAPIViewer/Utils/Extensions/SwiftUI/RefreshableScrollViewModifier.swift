@@ -78,6 +78,7 @@ private struct RefreshableScrollView<Content: View, BottomContent: View>: View {
                 content()
                 bottomContent()
             }
+            .accessibilityIdentifier("scrollView")
             .refreshable {
                 await fromIOS15Action()
             }

@@ -8,45 +8,34 @@
 import Foundation
 
 struct UITestsHelper {
-    private struct Constants {
-        static let uiTestingLaunchFlag = "-ui-testing"
-        
-        static let planetsFirstPageRequestKey = "-request-planets-first-page"
-        static let planetsNextPageRequestKey = "-request-planets-next-page"
-        static let planetDetailsRequestKey = "-request-planet-details"
-    }
-    
     static var isUITesting: Bool {
-        ProcessInfo.processInfo.arguments.contains(Constants.uiTestingLaunchFlag)
+        ProcessInfo.processInfo.arguments.contains(ProcessInfoUITestConstants.uiTestingLaunchFlag)
     }
     
-    #if DEBIG
+#if DEBUG
     static var isPlanetsFirstPageRequestSuccessful: Bool {
-        ProcessInfo.processInfo.flag(forKey: Constants.planetsFirstPageRequestKey)
+        ProcessInfo.processInfo.environmentFlag(forKey: ProcessInfoUITestConstants.planetsFirstPageRequestKey)
     }
     
     static var isPlanetsNextPageRequestSuccessful: Bool {
-        ProcessInfo.processInfo.flag(forKey: Constants.planetsNextPageRequestKey)
+        ProcessInfo.processInfo.environmentFlag(forKey: ProcessInfoUITestConstants.planetsNextPageRequestKey)
     }
     
     static var isPlanetDetailsRequestSuccessful: Bool {
-        ProcessInfo.processInfo.flag(forKey: Constants.planetDetailsRequestKey)
+        ProcessInfo.processInfo.environmentFlag(forKey: ProcessInfoUITestConstants.planetDetailsRequestKey)
     }
-    #endif
+#endif
 }
 
-#if DEBUG
-
 private extension ProcessInfo {
-    func flag(forKey key: String) -> Bool {
-        guard
-            let stringFlag = ProcessInfo.processInfo.environment[key],
-            let flag = Bool(stringFlag)
-        else {
-            fatalError("UITesting flag with key \(key) has not been found")
+    func environmentFlag(forKey key: String) -> Bool {
+        guard let stringFlag = ProcessInfo.processInfo.environment[key] else {
+            fatalError("ProcessInfo string flag key \"\(key)\" has not been found. Environments: \(ProcessInfo.processInfo.environment)")
         }
         
+        guard let flag = Bool(stringFlag) else {
+            fatalError("ProcessInfo value \"\(stringFlag)\" is not bool convertible")
+        }
         return flag
     }
 }
-#endif
