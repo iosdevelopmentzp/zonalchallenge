@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import Resolver
 
 @MainActor
 final class PlanetsCoordinatorObject: ObservableObject {
@@ -14,6 +15,14 @@ final class PlanetsCoordinatorObject: ObservableObject {
     @Published var spaceViewModel: StarWarsSpaceViewModel?
     @Published var planetsViewModel: PlanetsViewModel?
     @Published var planetDetailsViewModel: PlanetDetailsViewModel?
+    
+    private let resolver: ResolverType
+    
+    // MARK: - Constructor
+    
+    init(resolver: ResolverType) {
+        self.resolver = resolver
+    }
     
     // MARK: - Start
     
@@ -26,19 +35,7 @@ final class PlanetsCoordinatorObject: ObservableObject {
 
 extension PlanetsCoordinatorObject: StarWarsSpaceViewSceneDelegate {
     func didTapBrowsePlanets() {
-        planetsViewModel = PlanetsViewModel(
-            useCase: StarWarsUseCase(
-                starWarsNetwork: StarWarsNetworkService(
-                    client: SwapiClientService(
-                        networking: NetworkingService(
-                            plugins: [LoggingPlugin()]
-                        ),
-                        baseURL: "https://swapi.dev/"
-                    )
-                )
-            ),
-            sceneDelegate: self
-        )
+        planetsViewModel = PlanetsViewModel(useCase: resolver.resolve(), sceneDelegate: self)
     }
 }
 
@@ -48,16 +45,7 @@ extension PlanetsCoordinatorObject: PlanetsViewSceneDelegate {
     func openPlanetDetails(with planetId: Int) {
         planetDetailsViewModel = PlanetDetailsViewModel(
             planetId: planetId,
-            useCase: StarWarsUseCase(
-                starWarsNetwork: StarWarsNetworkService(
-                    client: SwapiClientService(
-                        networking: NetworkingService(
-                            plugins: [LoggingPlugin()]
-                        ),
-                        baseURL: "https://swapi.dev/"
-                    )
-                )
-            ),
+            useCase: resolver.resolve(),
             sceneDelegate: self
         )
     }

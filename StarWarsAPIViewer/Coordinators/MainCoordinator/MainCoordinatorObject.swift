@@ -6,16 +6,20 @@
 //
 
 import SwiftUI
+import Resolver
 
 /// The main coordinator object responsible for coordinating the application's flow.
 @MainActor
 final class MainCoordinatorObject: ObservableObject {
+    private let resolver: ResolverType
     @Published var planetsCoordinator: PlanetsCoordinatorView?
     
-    init() {}
+    init(resolver: ResolverType) {
+        self.resolver = resolver
+    }
     
     func start() {
-        let object = PlanetsCoordinatorObject()
+        let object = PlanetsCoordinatorObject(resolver: resolver)
         self.planetsCoordinator = .init(object: object)
         object.start()
     }

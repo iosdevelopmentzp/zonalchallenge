@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import Resolver
 
 @main
 struct StarWarsAPIViewerApp: App {
@@ -19,9 +20,11 @@ struct StarWarsAPIViewerApp: App {
 }
 
 class AppDelegate: UIResponder, UIApplicationDelegate {
-    let mainCoordinator = MainCoordinatorObject()
+    private let resolver: ResolverType = Resolver()
+    lazy var mainCoordinator = MainCoordinatorObject(resolver: resolver)
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
+        resolver.setupDependencies()
         mainCoordinator.start()
         return true
     }
