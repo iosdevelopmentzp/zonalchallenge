@@ -16,6 +16,8 @@ struct PlanetDetailsView<ViewModel: PlanetDetailsViewModelProtocol>: View {
     
     var body: some View {
         ZStack {
+            Color(UIColor.systemGray6).ignoresSafeArea()
+            
             if let item = viewModel.state.planetItem {
                 renderPlanetDetails(item)
             }
@@ -59,19 +61,24 @@ struct PlanetDetailsView<ViewModel: PlanetDetailsViewModelProtocol>: View {
     
     @ViewBuilder
     private func renderPlanetDetails(_ item: PlanetDetailsViewState.PlanetItem) -> some View {
-        LazyVGrid(columns: [.init(.flexible(), spacing: 0, alignment: .top)], spacing: 0) {
-            Text(item.name)
-                .font(.system(size: 20))
-            
+        LazyVGrid(columns: [.init(.flexible(), spacing: 0, alignment: .leading)], spacing: 0) {
             ForEach(item.parameters.indices, id: \.self) {
                 let localized = item.parameters[$0].localized
-                HStack(spacing: 16) {
-                    Text(localized.title)
-                    Spacer()
-                    Text(localized.value)
+                HStack(alignment: .firstTextBaseline, spacing: 16) {
+                    Text(localized.title + ":")
+                        .font(.system(size: 20, weight: .bold))
+                    +
+                    Text("\n\(localized.value)")
                 }
+                .padding()
             }
         }
+        .padding()
+        .background(
+            Color.white
+                .cornerRadius(8)
+                .padding([.horizontal])
+        )
         .embeddedIntoRefreshableScrollView(
             belowIOS15Input: (
                 action: { viewModel.handle(.didTapRefresh) },
