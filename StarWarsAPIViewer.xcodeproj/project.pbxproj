@@ -41,6 +41,7 @@
 		3BCB23532A4E38A300ACD9AF /* Pagination.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BCB23522A4E38A300ACD9AF /* Pagination.swift */; };
 		3BCB23562A4E3C5500ACD9AF /* Result+Async.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BCB23552A4E3C5500ACD9AF /* Result+Async.swift */; };
 		3BCB23592A4E3D4B00ACD9AF /* StarWarsUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BCB23582A4E3D4B00ACD9AF /* StarWarsUseCase.swift */; };
+		3BF44BCA2A53062D001876EC /* ZNLSWAPIClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BF44BC92A53062D001876EC /* ZNLSWAPIClient.m */; };
 		7E29D86926A6FFF9001034D1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E29D86826A6FFF9001034D1 /* AppDelegate.swift */; };
 		7E29D87026A6FFF9001034D1 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7E29D86E26A6FFF9001034D1 /* Main.storyboard */; };
 		7E29D87226A6FFFC001034D1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7E29D87126A6FFFC001034D1 /* Assets.xcassets */; };
@@ -99,6 +100,8 @@
 		3BCB23522A4E38A300ACD9AF /* Pagination.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Pagination.swift; sourceTree = "<group>"; };
 		3BCB23552A4E3C5500ACD9AF /* Result+Async.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Result+Async.swift"; sourceTree = "<group>"; };
 		3BCB23582A4E3D4B00ACD9AF /* StarWarsUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StarWarsUseCase.swift; sourceTree = "<group>"; };
+		3BF44BC82A53062D001876EC /* ZNLSWAPIClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZNLSWAPIClient.h; sourceTree = "<group>"; };
+		3BF44BC92A53062D001876EC /* ZNLSWAPIClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZNLSWAPIClient.m; sourceTree = "<group>"; };
 		7E29D86526A6FFF9001034D1 /* StarWarsAPIViewer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = StarWarsAPIViewer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7E29D86826A6FFF9001034D1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		7E29D86F26A6FFF9001034D1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -369,6 +372,26 @@
 			path = UseCases;
 			sourceTree = "<group>";
 		};
+		3BF44BC62A5305C3001876EC /* Legacy */ = {
+			isa = PBXGroup;
+			children = (
+				7E29D8AA26A81DE1001034D1 /* Data Source */,
+				3BF44BC72A53062D001876EC /* API Client */,
+				7E29D8A926A81DD3001034D1 /* View Controllers */,
+				7E29D86E26A6FFF9001034D1 /* Main.storyboard */,
+			);
+			path = Legacy;
+			sourceTree = "<group>";
+		};
+		3BF44BC72A53062D001876EC /* API Client */ = {
+			isa = PBXGroup;
+			children = (
+				3BF44BC82A53062D001876EC /* ZNLSWAPIClient.h */,
+				3BF44BC92A53062D001876EC /* ZNLSWAPIClient.m */,
+			);
+			path = "API Client";
+			sourceTree = "<group>";
+		};
 		7E29D85C26A6FFF9001034D1 = {
 			isa = PBXGroup;
 			children = (
@@ -392,17 +415,15 @@
 		7E29D86726A6FFF9001034D1 /* StarWarsAPIViewer */ = {
 			isa = PBXGroup;
 			children = (
-				3BCB23572A4E3D3A00ACD9AF /* UseCases */,
-				3BCB234C2A4E329100ACD9AF /* Utils */,
+				7E29D86826A6FFF9001034D1 /* AppDelegate.swift */,
 				3BCB22FA2A4DF50200ACD9AF /* Scenes */,
 				3BCB22EF2A4DF45000ACD9AF /* Coordinators */,
+				3BCB23572A4E3D3A00ACD9AF /* UseCases */,
 				3BCB22DB2A4DC12200ACD9AF /* Services */,
+				3BCB234C2A4E329100ACD9AF /* Utils */,
 				7E29D92A26A96D79001034D1 /* Views */,
-				7E29D8AA26A81DE1001034D1 /* Data Source */,
-				7E29D8A926A81DD3001034D1 /* View Controllers */,
 				7E29D8A826A81DC2001034D1 /* Model */,
-				7E29D86826A6FFF9001034D1 /* AppDelegate.swift */,
-				7E29D86E26A6FFF9001034D1 /* Main.storyboard */,
+				3BF44BC62A5305C3001876EC /* Legacy */,
 				7E29D87126A6FFFC001034D1 /* Assets.xcassets */,
 				7E29D87326A6FFFC001034D1 /* LaunchScreen.storyboard */,
 				7E29D87626A6FFFC001034D1 /* Info.plist */,
@@ -569,6 +590,7 @@
 				3BCB23562A4E3C5500ACD9AF /* Result+Async.swift in Sources */,
 				3B1875D02A5214A7000B69BD /* View+onLoad.swift in Sources */,
 				7E29D8A226A71D78001034D1 /* PlanetDTO.swift in Sources */,
+				3BF44BCA2A53062D001876EC /* ZNLSWAPIClient.m in Sources */,
 				3BCB23092A4DFE4300ACD9AF /* PlanetsViewSceneDelegate.swift in Sources */,
 				3BCB23072A4DF68E00ACD9AF /* PlanetsPage.swift in Sources */,
 				3B76DCC62A4F1ABD00FACAA4 /* RefreshableScrollViewModifier.swift in Sources */,
