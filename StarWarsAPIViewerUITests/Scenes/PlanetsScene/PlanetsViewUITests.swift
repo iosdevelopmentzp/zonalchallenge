@@ -6,7 +6,6 @@
 //
 
 import XCTest
-@testable import StarWarsAPIViewer
 
 final class PlanetsViewUITests: XCTestCase {
     
