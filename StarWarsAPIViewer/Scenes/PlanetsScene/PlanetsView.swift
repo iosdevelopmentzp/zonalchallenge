@@ -178,6 +178,18 @@ struct PlanetsView_Previews: PreviewProvider {
         }
         .navigationViewStyle(.stack)
         .previewDisplayName("Error response")
+        
+        NavigationView {
+            PlanetsView(
+                viewModel: PlanetsViewModel(
+                    useCase: StarWarsUseCaseProtocolUITestsMock()
+                        .setPlanetsFirstPageResponse(.fixture()),
+                    sceneDelegate: nil
+                )
+            )
+        }
+        .navigationViewStyle(.stack)
+        .previewDisplayName("Empty planets")
     }
 }
 

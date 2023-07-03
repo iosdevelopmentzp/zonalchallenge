@@ -14,6 +14,10 @@ final class StarWarsUseCaseProtocolUITestsMock: StarWarsUseCaseProtocol {
     private var isPlanetsNextPageSuccessful = true
     private var isPlanetsDetailsSuccessful = true
     
+    private var planetsFirstPageResponse = StarWarsUseCaseProtocolUITestsMock.firstPageResponse
+    private var planetsNextPageResponse = StarWarsUseCaseProtocolUITestsMock.nextPageResponse
+    private var planetDetailsResponse: Planet?
+    
     private var requestDelay: UInt64 = 1_000_000_000 // 1 second
     
     func planetsFirstPage() async throws -> PlanetsPage {
@@ -22,7 +26,7 @@ final class StarWarsUseCaseProtocolUITestsMock: StarWarsUseCaseProtocol {
         }
         
         if isPlanetsFirstPageSuccessful {
-            return Self.firstPageResponse
+            return planetsFirstPageResponse
         } else {
             throw MockedError.generic
         }
@@ -34,7 +38,7 @@ final class StarWarsUseCaseProtocolUITestsMock: StarWarsUseCaseProtocol {
         }
         
         if isPlanetsNextPageSuccessful {
-            return Self.nextPageResponse
+            return planetsNextPageResponse
         } else {
             throw MockedError.generic
         }
@@ -49,15 +53,17 @@ final class StarWarsUseCaseProtocolUITestsMock: StarWarsUseCaseProtocol {
             throw MockedError.generic
         }
         
-        let allPlanets = [Self.firstPageResponse, Self.nextPageResponse].flatMap(\.planets)
-        
-        guard let planet = allPlanets.first(where: {
-            $0.id == id
-        }) else {
-            throw MockedError.generic
+        guard let planetDetailsResponse else {
+            let allPlanets = [Self.firstPageResponse, Self.nextPageResponse].flatMap(\.planets)
+            
+            if let planet = allPlanets.first(where: { $0.id == id }) {
+                return planet
+            } else {
+                throw MockedError.generic
+            }
         }
         
-        return planet
+        return planetDetailsResponse
     }
     
     // MARK: - Configurations
@@ -68,16 +74,25 @@ final class StarWarsUseCaseProtocolUITestsMock: StarWarsUseCaseProtocol {
         return self
     }
     
+    @discardableResult
+    func setPlanetsFirstPageResponse(_ response: PlanetsPage) -> Self {
+        self.planetsFirstPageResponse = response
+        return self
+    }
+    
+    @discardableResult
     func setIsPlanetsNextPageSuccessful(_ isSuccessful: Bool) -> Self {
         self.isPlanetsNextPageSuccessful = isSuccessful
         return self
     }
     
+    @discardableResult
     func setIsPlanetsDetailsSuccessful(_ isSuccessful: Bool) -> Self {
         self.isPlanetsDetailsSuccessful = isSuccessful
         return self
     }
     
+    @discardableResult
     func requestDelay(_ delay: UInt64) -> Self {
         requestDelay = delay
         return self
