@@ -177,13 +177,6 @@
 			name = Packages;
 			sourceTree = "<group>";
 		};
-		3B1875F02A52FD35000B69BD /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			name = Frameworks;
-			sourceTree = "<group>";
-		};
 		3B1875F32A52FF9A000B69BD /* Resolver */ = {
 			isa = PBXGroup;
 			children = (
@@ -472,7 +465,6 @@
 				7E29D86726A6FFF9001034D1 /* StarWarsAPIViewer */,
 				7E29D87E26A6FFFC001034D1 /* StarWarsAPIViewerTests */,
 				7E29D86626A6FFF9001034D1 /* Products */,
-				3B1875F02A52FD35000B69BD /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
