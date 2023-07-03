@@ -33,43 +33,6 @@ enum PlanetDetailsViewState: Hashable {
     case loaded(PlanetItem)
 }
 
-// MARK: - Reducer
-
-extension PlanetDetailsViewModel {
-    struct Reducer {
-        enum Event {
-            case loading
-            case refreshing
-            case loaded(Planet)
-            case failed(Error)
-        }
-        
-        static func reduce(state currentState: PlanetDetailsViewState, event: Event) -> PlanetDetailsViewState {
-            let reducedState: PlanetDetailsViewState
-            
-            switch event {
-            case .loading:
-                reducedState = .loading
-            case .refreshing:
-                if let item = currentState.planetItem {
-                    reducedState = .refreshing(item)
-                } else {
-                    assertionFailure("Expecting not nil planet item for refreshing event. Current state: \(currentState)")
-                    reducedState = currentState
-                }
-                
-            case .loaded(let planet):
-                reducedState = .loaded(PlanetDetailsViewState.PlanetItem(planet: planet))
-                
-            case .failed(let error):
-                reducedState = .failed(errorMessage: error.localizedDescription, currentState.planetItem)
-            }
-            
-            return reducedState
-        }
-    }
-}
-
 extension PlanetDetailsViewState {
     var planetItem: PlanetItem? {
         switch self {
@@ -97,7 +60,7 @@ extension PlanetDetailsViewState {
     }
 }
 
-private extension PlanetDetailsViewState.PlanetItem {
+extension PlanetDetailsViewState.PlanetItem {
     init(planet: Planet) {
         self = .init(
             name: planet.name,

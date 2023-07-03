@@ -13,8 +13,10 @@ struct PlanetsPage: Equatable {
 }
 
 extension PlanetsPage {
-    /// Expecting URL such as https://swapi.dev/api/planets/?page=2. For this case number will be 2.
+    /// Returns the page number of the next page, based on the `next` URL.
+    /// - Returns: The page number of the next page, or `nil` if it cannot be determined.
     var nextPageNumber: Int? {
+        /* Expecting URL such as https://swapi.dev/api/planets/?page=2 */
         guard
             let nextPageUrl = next.flatMap(URL.init(string:)),
             let urlComponents = URLComponents(url: nextPageUrl, resolvingAgainstBaseURL: true),

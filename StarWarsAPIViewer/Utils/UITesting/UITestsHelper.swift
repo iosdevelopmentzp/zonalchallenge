@@ -7,6 +7,7 @@
 
 import Foundation
 
+/// Helper functions related to UI testing.
 struct UITestsHelper {
     static var isUITesting: Bool {
         ProcessInfo.processInfo.arguments.contains(ProcessInfoUITestConstants.uiTestingLaunchFlag)

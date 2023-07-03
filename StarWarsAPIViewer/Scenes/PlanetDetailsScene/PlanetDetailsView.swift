@@ -48,9 +48,11 @@ struct PlanetDetailsView<ViewModel: PlanetDetailsViewModelProtocol>: View {
     init(viewModel: ViewModel) {
         self.viewModel = viewModel
     }
-    
-    // MARK: - Private
-    
+}
+
+// MARK: - Private
+
+private extension PlanetDetailsView {
     private func awaitWhileRefreshingIsTrue() async {
         try? await Task.sleep(nanoseconds: 500_000_000)
         

@@ -8,6 +8,7 @@
 import Foundation
 
 #if DEBUG
+/// Constants related to UI testing for `ProcessInfo`.
 struct ProcessInfoUITestConstants {
     static let uiTestingLaunchFlag = "-ui-testing"
     

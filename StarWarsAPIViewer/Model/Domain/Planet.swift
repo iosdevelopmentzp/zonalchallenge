@@ -19,8 +19,10 @@ struct Planet: Equatable {
 }
 
 extension Planet {
-    /// Expecting url such https://swapi.dev/api/planets/13/. So for this case id will be 13.
+    /// Returns the ID of the planet extracted from the URL.
+    /// - Returns: The ID of the planet, or `nil` if it cannot be determined.
     var id: Int? {
+        /* Expecting url such https://swapi.dev/api/planets/13/. So for this case id will be 13 */
         guard let lastComponent = URL(string: url)?.lastPathComponent else {
             return nil
         }

@@ -95,6 +95,8 @@ final class PlanetsViewModel: ObservableObject, PlanetsViewModelProtocol {
         }
     }
     
+    // MARK: - Private
+    
     private func setupPaginationObservable() {
         pagination
             .$pageState
@@ -119,3 +121,48 @@ final class PlanetsViewModel: ObservableObject, PlanetsViewModelProtocol {
     }
 }
 
+// MARK: - Reducer
+
+private extension PlanetsViewModel {
+    enum Event {
+        case idle
+        case refreshing
+        case loading
+        case failedLoading(error: Error)
+        case loaded(planets: [Planet])
+    }
+    
+    struct Reducer {
+        static func reduce(state currentState: PlanetsViewState, event: Event) -> PlanetsViewState {
+            let newState: PlanetsViewState
+            
+            switch event {
+            case .idle:
+                newState = .idle
+                
+            case .refreshing:
+                newState = .refreshing(planets: currentState.planets)
+                
+            case .loading:
+                newState = .loading(planets: currentState.planets)
+                
+            case .failedLoading(let error):
+                newState = .failedLoading(
+                    errorMessage: error.localizedDescription,
+                    planets: currentState.planets
+                )
+                
+            case .loaded(let planets):
+                if planets.isEmpty, currentState.planets.isEmpty {
+                    newState = .emptyList
+                } else if planets.isEmpty {
+                    newState = .loaded(planets: currentState.planets)
+                } else {
+                    newState = .loaded(planets: planets.map(PlanetsViewState.PlanetItem.make(from:)))
+                }
+            }
+            
+            return newState
+        }
+    }
+}

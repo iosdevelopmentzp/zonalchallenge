@@ -18,7 +18,7 @@ final class StarWarsUseCaseProtocolUITestsMock: StarWarsUseCaseProtocol {
     private var planetsNextPageResponse = StarWarsUseCaseProtocolUITestsMock.nextPageResponse
     private var planetDetailsResponse: Planet?
     
-    private var requestDelay: UInt64 = 1_000_000_000 // 1 second
+    private var requestDelay: UInt64 = 500_000_000 // 0.5 seconds
     
     func planetsFirstPage() async throws -> PlanetsPage {
         if requestDelay > 0 {

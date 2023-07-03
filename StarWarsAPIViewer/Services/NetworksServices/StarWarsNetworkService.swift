@@ -83,13 +83,13 @@ final class StarWarsNetworkService: StarWarsNetworkServiceProtocol {
     
     // MARK: - Constructor
     
-    /// Initializes the `PlanetsNetworkService` with the specified client.
+    /// Initializes the `StarWarsNetworkService` with the specified client.
     /// - Parameter client: The client service for making network requests.
     init(client: SwapiClientServiceProtocol) {
         self.client = client
     }
     
-    // MARK: - PlanetsNetworkServiceProtocol
+    // MARK: - StarWarsNetworkServiceProtocol
     
     /// Loads the first planets page asynchronously.
     /// - Returns: A `PlanetsPageDTO` object representing the loaded planet data.
@@ -103,6 +103,10 @@ final class StarWarsNetworkService: StarWarsNetworkServiceProtocol {
         try await client.request(APIEndpoint<PlanetsPageDTO>.planetsNextPage(url: url).endpoint)
     }
     
+    /// Loads the details of a planet with the specified ID.
+    /// - Parameters:
+    ///   - id: The ID of the planet to load.
+    /// - Returns: A `PlanetDTO` object representing the loaded planet data.
     func loadPlanetDetails(id: Int) async throws -> PlanetDTO {
         try await client.request(APIEndpoint<PlanetDTO>.planetDetails(id: id).endpoint)
     }

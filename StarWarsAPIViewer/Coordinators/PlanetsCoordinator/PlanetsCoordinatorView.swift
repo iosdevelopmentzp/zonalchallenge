@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct PlanetsCoordinatorView: View {
+    // MARK: - Properties
+    
     @ObservedObject var object: PlanetsCoordinatorObject
     
     var body: some View {

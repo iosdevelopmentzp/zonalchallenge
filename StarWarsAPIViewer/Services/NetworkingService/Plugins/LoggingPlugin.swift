@@ -7,6 +7,7 @@
 
 import Foundation
 
+/// A logging plugin that conforms to the `NetworkingPluginProtocol`
 struct LoggingPlugin: NetworkingPluginProtocol {
     // MARK: - Properties
     
@@ -32,14 +33,29 @@ struct LoggingPlugin: NetworkingPluginProtocol {
     // MARK: - NetworkingPluginProtocol
     
 #if DEBUG
+    /// Prints the upcoming request details.
+    /// - Parameters:
+    ///   - identifier: The identifier of the request.
+    ///   - request: The URLRequest object representing the upcoming request.
     func willStartRequest(identifier: Int, _ request: URLRequest) {
         printUpcomingRequest(request, identifier: identifier)
     }
     
+    /// Prints the details of a failed request.
+    /// - Parameters:
+    ///   - identifier: The identifier of the request.
+    ///   - error: The error that occurred during the request.
+    ///   - request: The URLRequest object representing the failed request.
     func requestDidFail(identifier: Int, with error: Error, request: URLRequest) {
         printFailedRequest(with: error, request: request, identifier: identifier)
     }
     
+    /// Prints the details of a successful request.
+    /// - Parameters:
+    ///   - identifier: The identifier of the request.
+    ///   - request: The URLRequest object representing the successful request.
+    ///   - response: The URLResponse object received for the request.
+    ///   - data: The response data received for the request.
     func requestDidSucceed(identifier: Int, request: URLRequest, response: URLResponse, data: Data?) {
         printSuccessfulRequest(request: request, response: response, data: data, identifier: identifier)
     }
@@ -161,5 +177,3 @@ struct LoggingPlugin: NetworkingPluginProtocol {
         return jsonString.replacingOccurrences(of: "\\/", with: "/")
     }
 }
-
-

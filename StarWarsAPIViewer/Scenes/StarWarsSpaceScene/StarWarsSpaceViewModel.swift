@@ -19,9 +19,11 @@ enum StarWarsSpaceViewEvent {
 @MainActor
 final class StarWarsSpaceViewModel: ObservableObject, StarWarsSpaceViewModelProtocol {
     // MARK: - Properties
+    
     private weak var sceneDelegate: StarWarsSpaceViewSceneDelegate?
     
     // MARK: - Constructor
+    
     init(sceneDelegate: StarWarsSpaceViewSceneDelegate) {
         self.sceneDelegate = sceneDelegate
     }

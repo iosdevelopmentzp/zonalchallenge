@@ -22,56 +22,10 @@ enum PlanetsViewState: Hashable {
     case failedLoading(errorMessage: String, planets: [PlanetItem]?)
     /// Represents the loading state, indicating that the planets are being loaded.
     case loading(planets: [PlanetItem]?)
-    
+    /// Represents the refreshing state, indicating that the planets are being refreshed.
     case refreshing(planets: [PlanetItem]?)
     /// Represents the loaded state, indicating that the planets have been successfully loaded.
     case loaded(planets: [PlanetItem])
-}
-
-// MARK: - Factory
-
-extension PlanetsViewModel {
-    enum Event {
-        case idle
-        case refreshing
-        case loading
-        case failedLoading(error: Error)
-        case loaded(planets: [Planet])
-    }
-    
-    struct Reducer {
-        static func reduce(state currentState: PlanetsViewState, event: Event) -> PlanetsViewState {
-            let newState: PlanetsViewState
-            
-            switch event {
-            case .idle:
-                newState = .idle
-                
-            case .refreshing:
-                newState = .refreshing(planets: currentState.planets)
-                
-            case .loading:
-                newState = .loading(planets: currentState.planets)
-                
-            case .failedLoading(let error):
-                newState = .failedLoading(
-                    errorMessage: error.localizedDescription,
-                    planets: currentState.planets
-                )
-                
-            case .loaded(let planets):
-                if planets.isEmpty, currentState.planets.isEmpty {
-                    newState = .emptyList
-                } else if planets.isEmpty {
-                    newState = .loaded(planets: currentState.planets)
-                } else {
-                    newState = .loaded(planets: planets.map(PlanetsViewState.PlanetItem.make(from:)))
-                }
-            }
-            
-            return newState
-        }
-    }
 }
 
 // MARK: - Computed Properties
@@ -138,7 +92,7 @@ extension PlanetsViewState {
 
 // MARK: - PlanetsViewState.Planet Factory
 
-private extension PlanetsViewState.PlanetItem {
+extension PlanetsViewState.PlanetItem {
     /// Creates a `PlanetsViewState.Planet` instance from a given `Planet` object.
     static func make(from planet: Planet) -> PlanetsViewState.PlanetItem {
         .init(

@@ -41,13 +41,13 @@ final class StarWarsUseCase: StarWarsUseCaseProtocol {
 
 // MARK: - PlanetsPage Constructor
 
-extension PlanetsPage {
+private extension PlanetsPage {
     init(planetPage: PlanetsPageDTO) {
         self = .init(next: planetPage.next, planets: planetPage.planets.map(Planet.init(planet:)))
     }
 }
 
-extension Planet {
+private extension Planet {
     init(planet: PlanetDTO) {
         self = Planet(
             url: planet.url,
