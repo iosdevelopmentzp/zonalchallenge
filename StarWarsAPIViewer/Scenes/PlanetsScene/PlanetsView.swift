@@ -27,8 +27,10 @@ struct PlanetsView<ViewModel: PlanetsViewModelProtocol>: View {
                 renderEmptyListView()
                 
             case .failedLoading(let errorMessage, let planets):
-                if (planets ?? []).isEmpty {
-                    renderFailedEmptyListView(errorMessage: errorMessage)
+                if planets?.isEmpty ?? true {
+                    FailedView(errorMessage: errorMessage) {
+                        viewModel.handle(.didTapTryAgain)
+                    }
                 }
                 
             case .loading(let planets), .refreshing(let planets):
@@ -65,24 +67,6 @@ private extension PlanetsView {
             ]
         } else {
             return [.init(.flexible(), spacing: 0, alignment: .top)]
-        }
-    }
-    
-    @ViewBuilder
-    private func renderFailedEmptyListView(errorMessage: String) -> some View {
-        VStack(alignment: .center, spacing: 24) {
-            Text("Error: \(errorMessage)")
-                .frame(maxWidth: .infinity, alignment: .center)
-            
-            Button(action: {
-                viewModel.handle(.didTapTryAgain)
-            }) {
-                Text("Try again")
-                    .foregroundColor(.white)
-                    .padding()
-                    .background(Color.blue)
-                    .cornerRadius(10)
-            }
         }
     }
     

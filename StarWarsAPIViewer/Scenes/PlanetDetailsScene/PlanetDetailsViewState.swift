@@ -65,7 +65,6 @@ extension PlanetDetailsViewModel {
                 reducedState = .failed(errorMessage: error.localizedDescription, currentState.planetItem)
             }
             
-            debugPrint("REduced: \(reducedState)")
             return reducedState
         }
     }

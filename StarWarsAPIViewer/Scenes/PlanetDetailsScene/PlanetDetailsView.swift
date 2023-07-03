@@ -20,11 +20,22 @@ struct PlanetDetailsView<ViewModel: PlanetDetailsViewModelProtocol>: View {
                 renderPlanetDetails(item)
             }
             
-            if viewModel.state.isLoading {
+            switch viewModel.state {
+            case .idle, .refreshing, .loaded:
+                EmptyView()
+                
+            case .loading:
                 ProgressView()
+                
+            case .failed(let errorMessage, let planetItem):
+                if planetItem == nil {
+                    FailedView(errorMessage: errorMessage) {
+                        viewModel.handle(.didTapTryAgain)
+                    }
+                }
             }
         }
-        .navigationTitle("Details Title")
+        .navigationTitle(viewModel.state.planetItem?.name ?? "Loading...")
         .onLoad {
             viewModel.handle(.viewDidLoad)
         }

@@ -47,20 +47,17 @@ final class PlanetDetailsViewModel: ObservableObject, PlanetDetailsViewModelProt
     
     func handle(_ event: PlanetDetailsViewEvent) {
         switch event {
-        case .viewDidLoad, .didTapTryAgain:
-            requestDetails(isRefreshing: false)
-                
-        case .didTapRefresh:
-            requestDetails(isRefreshing: true)
+        case .viewDidLoad, .didTapTryAgain, .didTapRefresh:
+            requestDetails()
         }
     }
     
     // MARK: - Private
     
-    private func requestDetails(isRefreshing: Bool) {
+    private func requestDetails() {
         task?.cancel()
         
-        self.state = Self.Reducer.reduce(state: self.state, event: isRefreshing ? .refreshing : .loading)
+        self.state = Self.Reducer.reduce(state: self.state, event: state.planetItem == nil ? .loading : .refreshing)
         
         task = Task {
             let result = await Result(throwingAsync: {
