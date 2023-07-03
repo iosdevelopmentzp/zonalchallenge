@@ -56,8 +56,8 @@ extension Planet {
             population: planet.population,
             climate: planet.climate,
             gravity: planet.gravity,
-            rotationPeriod: planet.rotationPeriod.flatMap { Int($0) },
-            orbitalPeriod: planet.orbitalPeriod.flatMap { Int($0) }
+            rotationPeriod: planet.rotationPeriod,
+            orbitalPeriod: planet.orbitalPeriod
         )
     }
 }

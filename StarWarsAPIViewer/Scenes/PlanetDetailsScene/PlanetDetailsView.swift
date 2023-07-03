@@ -100,13 +100,27 @@ struct PlanetDetailsView_Previews: PreviewProvider {
         NavigationView {
             PlanetDetailsView(
                 viewModel: PlanetDetailsViewModel(
-                    planetId: 0,
-                    useCase: StarWarsUseCaseProtocolPreviewMock(),
+                    planetId: 1,
+                    useCase: StarWarsUseCaseProtocolUITestsMock(),
                     sceneDelegate: nil
                 )
             )
         }
         .navigationViewStyle(.stack)
+        .previewDisplayName("Successful response")
+        
+        NavigationView {
+            PlanetDetailsView(
+                viewModel: PlanetDetailsViewModel(
+                    planetId: 1,
+                    useCase: StarWarsUseCaseProtocolUITestsMock()
+                        .setIsPlanetsDetailsSuccessful(false),
+                    sceneDelegate: nil
+                )
+            )
+        }
+        .navigationViewStyle(.stack)
+        .previewDisplayName("Error response")
     }
 }
 

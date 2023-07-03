@@ -159,12 +159,25 @@ struct PlanetsView_Previews: PreviewProvider {
         NavigationView {
             PlanetsView(
                 viewModel: PlanetsViewModel(
-                    useCase: StarWarsUseCaseProtocolPreviewMock(),
+                    useCase: StarWarsUseCaseProtocolUITestsMock(),
                     sceneDelegate: nil
                 )
             )
         }
         .navigationViewStyle(.stack)
+        .previewDisplayName("Successful response")
+        
+        NavigationView {
+            PlanetsView(
+                viewModel: PlanetsViewModel(
+                    useCase: StarWarsUseCaseProtocolUITestsMock()
+                        .setIsPlanetsFirstPageSuccessful(false),
+                    sceneDelegate: nil
+                )
+            )
+        }
+        .navigationViewStyle(.stack)
+        .previewDisplayName("Error response")
     }
 }
 

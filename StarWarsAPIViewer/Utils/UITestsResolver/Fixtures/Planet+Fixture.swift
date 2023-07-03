@@ -15,8 +15,8 @@ extension Planet {
         population: String = "",
         climate: String? = nil,
         gravity: String? = nil,
-        rotationPeriod: Int? = nil,
-        orbitalPeriod: Int? = nil
+        rotationPeriod: String? = nil,
+        orbitalPeriod: String? = nil
     ) -> Planet {
         Planet(
             url: url,
