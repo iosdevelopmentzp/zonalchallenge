@@ -341,7 +341,7 @@
 		3BCB234C2A4E329100ACD9AF /* Utils */ = {
 			isa = PBXGroup;
 			children = (
-				3BF44C132A53457F001876EC /* UITestsResolver */,
+				3BF44C132A53457F001876EC /* UITesting */,
 				3B1875F32A52FF9A000B69BD /* Resolver */,
 				3BCB23512A4E387100ACD9AF /* Pagination */,
 				3BCB234E2A4E32D600ACD9AF /* Extensions */,
@@ -495,7 +495,7 @@
 			path = PlanetsScene;
 			sourceTree = "<group>";
 		};
-		3BF44C132A53457F001876EC /* UITestsResolver */ = {
+		3BF44C132A53457F001876EC /* UITesting */ = {
 			isa = PBXGroup;
 			children = (
 				3BF44C192A53481B001876EC /* Fixtures */,
@@ -504,7 +504,7 @@
 				3BF44C0E2A533AF9001876EC /* Resolver+UITestsSetupDependencies.swift */,
 				3BF44C172A5346B7001876EC /* MockedError.swift */,
 			);
-			path = UITestsResolver;
+			path = UITesting;
 			sourceTree = "<group>";
 		};
 		3BF44C142A5345CC001876EC /* UITestsMocks */ = {
