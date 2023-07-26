@@ -22,5 +22,7 @@ DerivedData/
 *.perspectivev3
 !default.perspectivev3
 
+.DS_Store
+
 ## Gcc Patch
 /*.gcno
